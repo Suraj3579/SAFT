@@ -1,2 +1,2 @@
 # SAFT
-website built MERN stack
+website built  with MERN stack
