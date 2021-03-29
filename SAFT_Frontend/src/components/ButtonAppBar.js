@@ -63,7 +63,9 @@ export default function ButtonAppBar() {
           >
             <MenuIcon />
           </IconButton>
-          <img src={logo} className={classes.logo} />
+          <Link href="/">
+            <img src={logo} className={classes.logo} />
+          </Link>
           <Button size="large" href="/login" className={classes.button}>
             Login
           </Button>
