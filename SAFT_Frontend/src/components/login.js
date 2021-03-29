@@ -12,6 +12,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import ButtonAppBar from "./ButtonAppBar";
 
 function Copyright() {
   return (
@@ -51,6 +52,7 @@ export default function Login() {
 
   return (
     <Container component="main" maxWidth="xs">
+      <ButtonAppBar />
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>

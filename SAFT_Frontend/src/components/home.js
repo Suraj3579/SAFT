@@ -6,14 +6,10 @@ import { Box, CssBaseline, Typography } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   image: {
     backgroundImage:
-      "url(https://mobisoftinfotech.com/resources/wp-content/uploads/2018/08/Banner.png)",
-    // backgroundRepeat: "no-repeat",
-    // backgroundColor:
-    //   theme.palette.type === "light"
-    //     ? theme.palette.grey[50]
-    //     : theme.palette.grey[900],
-    // backgroundSize: "cover",
-    // backgroundPosition: "center",
+      "url(https://www.dealsshutter.com/blog/wp-content/uploads/2020/03/homeservice.jpg)",
+    width: "100vw",
+    height: "90vh",
+    backgroundSize: "cover",
   },
 }));
 
