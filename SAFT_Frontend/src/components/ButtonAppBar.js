@@ -43,8 +43,8 @@ const useStyles = makeStyles((theme) => ({
     sizeLarge: "1",
   },
   logo: {
-    height: "10vh",
-    weight: "10vw",
+    height: "8vh",
+    weight: "8vw",
   },
 }));
 
@@ -63,7 +63,7 @@ export default function ButtonAppBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Link href="/">
+          <Link href="/" className={classes.title}>
             <img src={logo} className={classes.logo} />
           </Link>
           <Button size="large" href="/login" className={classes.button}>
