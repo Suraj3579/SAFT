@@ -18,7 +18,7 @@ const Home = () => {
   return (
     <div>
       <CssBaseline />
-      <ButtonAppBar />
+      <ButtonAppBar lab="h" />
       <div className={classes.image}>
         <Typography variant="h6">.</Typography>
       </div>

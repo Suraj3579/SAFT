@@ -31,9 +31,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flex: 1,
   },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
+  // menuButton: {
+  //   marginRight: theme.spacing(2),
+  // },
   title: {
     flex: 10,
   },
@@ -48,32 +48,81 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ButtonAppBar() {
+export default function ButtonAppBar(props) {
   const classes = useStyles();
 
-  return (
-    <div className={classes.root}>
-      <AppBar color="white" style={{ position: "relative" }}>
-        <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Link href="/" className={classes.title}>
-            <img src={logo} className={classes.logo} />
-          </Link>
-          <Button size="large" href="/login" className={classes.button}>
-            Login
-          </Button>
-          <Button size="large" href="/signUp" className={classes.button}>
-            SignUp
-          </Button>
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
+  if (props.lab == "h") {
+    return (
+      <div className={classes.root}>
+        <AppBar color="white" style={{ position: "relative" }}>
+          <Toolbar>
+            {/* <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="menu"
+            >
+              <MenuIcon />
+            </IconButton> */}
+            <Link href="/" className={classes.title}>
+              <img src={logo} className={classes.logo} />
+            </Link>
+            <Button size="large" href="/login" className={classes.button}>
+              Login
+            </Button>
+            <Button size="large" href="/signUp" className={classes.button}>
+              SignUp
+            </Button>
+          </Toolbar>
+        </AppBar>
+      </div>
+    );
+  } else if (props.lab == "s") {
+    return (
+      <div className={classes.root}>
+        <AppBar color="white" style={{ position: "relative" }}>
+          <Toolbar>
+            {/* <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="menu"
+            >
+              <MenuIcon />
+            </IconButton> */}
+            <Link href="/" className={classes.title}>
+              <img src={logo} className={classes.logo} />
+            </Link>
+            <Button size="large" href="/login" className={classes.button}>
+              Login
+            </Button>
+          </Toolbar>
+        </AppBar>
+      </div>
+    );
+  } else if (props.lab == "l") {
+    return (
+      <div className={classes.root}>
+        <AppBar color="white" style={{ position: "relative" }}>
+          <Toolbar>
+            {/* <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="menu"
+            >
+              <MenuIcon />
+            </IconButton> */}
+            <Link href="/" className={classes.title}>
+              <img src={logo} className={classes.logo} />
+            </Link>
+
+            <Button size="large" href="/signUp" className={classes.button}>
+              SignUp
+            </Button>
+          </Toolbar>
+        </AppBar>
+      </div>
+    );
+  }
 }
