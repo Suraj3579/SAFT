@@ -26,10 +26,12 @@ mongoose.connect(url,
 });
 
 //routes
-const userRoutes = require('./routes/user');
+const userRoutes = require('./routes/auth');
+const adminRoutes = require('./routes/admin/auth');
 
 app.use(bodyParser());
 app.use('/api', userRoutes);
+app.use('/api', adminRoutes);
 
 app.get('/',(req,res,next) => {
     res.status(200).json({

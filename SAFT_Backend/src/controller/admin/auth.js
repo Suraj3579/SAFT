@@ -1,4 +1,4 @@
-const User = require('../models/user');
+const User = require('../../models/user');
 const jwt = require('jsonwebtoken');
 exports.signup =((req,res) =>{
     User.findOne({
@@ -49,7 +49,7 @@ exports.login =((req,res) =>{
             error
         });
         if(user){
-            if(await user.authenticate(req.body.mypassword)){
+            if(await user.authenticate(req.body.mypassword) && user.role === "user"){
                 const token = generateJwtToken(user._id, user.role);
                 const{
                     firstname,
