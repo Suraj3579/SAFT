@@ -29,7 +29,7 @@ exports.validateLoginRequest = [
 
 exports.isRequestValidated = (req,res,next) => {
     const errors = validationResult(req);
-    console.log(errors.array())
+    //console.log(errors.array())
     if(errors.array().length>0){
         return res.status(400).json({
             error:errors.array()[0].msg

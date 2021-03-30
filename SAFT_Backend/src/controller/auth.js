@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const generateJwtToken = (_id, role) => {
-    return jwt.sign({ _id, role }, {
+    return jwt.sign({ _id, role }, 'tuturu',{
       expiresIn: "1d",
     });
   };
