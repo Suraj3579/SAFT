@@ -3,17 +3,10 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const generateJwtToken = (_id, role) => {
-<<<<<<< HEAD
   return jwt.sign({ _id, role }, process.env.JWT_SECRET, {
     expiresIn: "1d",
   });
 };
-=======
-    return jwt.sign({ _id, role }, 'tuturu',{
-      expiresIn: "1d",
-    });
-  };
->>>>>>> 6f35d65806db88aab2f4567ba36dfca67d372a2c
 
 exports.signup = (req, res) => {
   User.findOne({
