@@ -52,7 +52,6 @@ export default function SignUp() {
 
   return (
     <div>
-      <ButtonAppBar lab="s" />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
@@ -128,13 +127,13 @@ export default function SignUp() {
             >
               Sign Up
             </Button>
-            <Grid container justify="flex-end">
+            {/* <Grid container justify="flex-end">
               <Grid item>
                 <Link href="#" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>
-            </Grid>
+            </Grid> */}
           </form>
         </div>
         {/* <Box mt={5}>

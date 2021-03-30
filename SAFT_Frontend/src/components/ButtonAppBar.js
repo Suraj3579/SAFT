@@ -51,7 +51,19 @@ const useStyles = makeStyles((theme) => ({
 export default function ButtonAppBar(props) {
   const classes = useStyles();
 
-  if (props.lab == "h") {
+  if (props.lab == "none") {
+    return (
+      <div className={classes.root}>
+        <AppBar color="white" style={{ position: "relative" }}>
+          <Toolbar>
+            <Link href="/" className={classes.title}>
+              <img src={logo} className={classes.logo} />
+            </Link>
+          </Toolbar>
+        </AppBar>
+      </div>
+    );
+  } else if (props.lab == "h") {
     return (
       <div className={classes.root}>
         <AppBar color="white" style={{ position: "relative" }}>

@@ -53,7 +53,6 @@ export default function Login() {
 
   return (
     <div styles={{ backgroundColor: "orange" }}>
-      <ButtonAppBar lab="l" />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
@@ -99,7 +98,7 @@ export default function Login() {
             >
               Sign In
             </Button>
-            <Grid container>
+            {/* <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
                   Forgot password?
@@ -110,7 +109,7 @@ export default function Login() {
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
-            </Grid>
+            </Grid> */}
           </form>
         </div>
         {/* <Box mt={8}>
