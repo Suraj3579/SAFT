@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-import ButtonAppBar from "./ButtonAppBar";
-import { makeStyles } from "@material-ui/core/styles";
-import { Box, CssBaseline, Typography } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import SignUpComponent from "./signUp";
 import Link from "@material-ui/core/Link";
@@ -16,7 +13,7 @@ class SignUpPageRight extends Component {
         <Grid container justify="center">
           <Grid item>
             <Link href="#" onClick={() => this.changeToLogin()}>
-              Already have an account? <b>Sign in</b>
+              Already have an account? <b>Log in</b>
             </Link>
           </Grid>
         </Grid>
@@ -27,12 +24,12 @@ class SignUpPageRight extends Component {
       <Grid>
         <LoginComponent />
         <Grid container>
-          <Grid item xs>
+          <Grid item xs style={{ paddingLeft: 10 }}>
             <Link href="#" variant="body2">
               Forgot password?
             </Link>
           </Grid>
-          <Grid item>
+          <Grid item style={{ paddingRight: 10 }}>
             <Link
               href="#"
               variant="body2"
