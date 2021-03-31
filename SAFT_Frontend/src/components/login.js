@@ -94,6 +94,7 @@ export default function Login() {
               variant="contained"
               color="primary"
               className={classes.submit}
+              href="/after"
             >
               Log In
             </Button>
