@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 import CameraIcon from "@material-ui/icons/PhotoCamera";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
+import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -15,6 +16,7 @@ import Container from "@material-ui/core/Container";
 import Link from "@material-ui/core/Link";
 import ButtonAppBar from "./ButtonAppBar";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
+import Paper from "@material-ui/core/Paper";
 
 const theme = createMuiTheme({
   palette: {
@@ -28,6 +30,15 @@ const theme = createMuiTheme({
 });
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    flexWrap: "wrap",
+    "& > *": {
+      margin: theme.spacing(0),
+      width: theme.spacing(16),
+      height: theme.spacing(20),
+    },
+  },
   icon: {
     marginRight: theme.spacing(2),
   },
@@ -39,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(4),
   },
   cardGrid: {
+    backgroundColor: theme.palette.background.paper,
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8),
   },
@@ -57,31 +69,35 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
   },
+  mycard: {
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2),
+  },
 }));
 
 // const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const cards = [
   {
     id: 1,
-    serviceName: "cleaning",
+    serviceName: "Cleaning",
     image:
       "https://image.freepik.com/free-vector/poster-template-house-cleaning-services-with-various-cleaning-items_1416-1235.jpg",
   },
   {
     id: 2,
-    serviceName: "TV and Electronics",
+    serviceName: "Electronics",
     image:
       "https://images.unsplash.com/photo-1573399054516-90665ecc44be?ixid=MXwxMjA3fDB8MHxzZWFyY2h8N3x8dGVsZXZpc2lvbnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80",
   },
   {
     id: 3,
-    serviceName: "Furniture Assembly",
+    serviceName: "Assembly",
     image:
       "https://image.freepik.com/free-vector/furniture-assembly-isometric-illustration_1284-24376.jpg",
   },
   {
     id: 4,
-    serviceName: "General Handyman",
+    serviceName: "Handyman",
     image:
       "https://content3.jdmagicbox.com/comp/bangalore/y7/080pxx80.xx80.200126073512.l3y7/catalogue/quick-time-handyman-services-mahalakshmipuram-layout-bangalore-plumbers-fnt0xst1jf.jpg?clr=263340",
   },
@@ -111,12 +127,12 @@ const cards = [
   },
   {
     id: 9,
-    serviceName: "Smart Home",
+    serviceName: "SmartHome",
     image: "https://www.asmag.com/upload/pic/case/65711.136375.jpg",
   },
   {
     id: 10,
-    serviceName: "Window Treatments",
+    serviceName: "Salon",
     image:
       "https://i.pinimg.com/originals/6d/24/77/6d24771302dd67e5735d09de7b2a9e49.jpg",
   },
@@ -167,35 +183,54 @@ export default function AfterLogin() {
               </div> */}
             </Container>
           </div>
-          <Container className={classes.cardGrid} maxWidth="lg">
+          <Container className={classes.cardGrid} maxWidth="md">
             {/* End hero unit */}
-            <Grid container spacing={4}>
+            <Grid container spacing={1} className={classes.root}>
               {cards.map((card) => (
-                <Grid item key={card.id} xs={12} sm={6} md={3}>
-                  <Card className={classes.card}>
-                    <CardMedia
-                      className={classes.cardMedia}
-                      image={card.image}
-                      title="Image title"
-                    />
-                    <CardContent className={classes.cardContent}>
-                      <Typography gutterBottom variant="h5" component="h2">
-                        {card.serviceName}
-                      </Typography>
-                      <Typography>
+                <Grid
+                  item
+                  key={card.id}
+                  xs={12}
+                  sm={6}
+                  md={2}
+                  className={classes.mycard}
+                >
+                  <Card className={classes.card} elevation={0} square="true">
+                    <CardActionArea>
+                      <CardMedia
+                        className={classes.cardMedia}
+                        image={card.image}
+                        title="Image title"
+                      />
+                      <CardContent className={classes.cardContent}>
+                        <Typography gutterBottom variant="h6" component="h2">
+                          {card.serviceName}
+                        </Typography>
+                        {/* <Typography>
                         This is a media card. You can use this section to
                         describe the content.
-                      </Typography>
-                    </CardContent>
-                    <CardActions>
+                      </Typography> */}
+                      </CardContent>
+                      {/* <CardActions>
                       <Button size="small" color="primary">
                         Add to Cart
                       </Button>
                       <Button size="small" color="primary">
                         Edit
                       </Button>
-                    </CardActions>
+                    </CardActions> */}
+                    </CardActionArea>
                   </Card>
+                  {/* <Paper elevation={0}>
+                    <Typography
+                      href="/"
+                      gutterBottom
+                      variant="h6"
+                      component="h2"
+                    >
+                      {card.serviceName}
+                    </Typography>
+                  </Paper> */}
                 </Grid>
               ))}
             </Grid>
