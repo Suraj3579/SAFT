@@ -95,6 +95,7 @@ export default function Login() {
               color="primary"
               className={classes.submit}
               href="/after"
+              disableElevation
             >
               Log In
             </Button>
