@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -11,7 +11,8 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import ButtonAppBar from "./ButtonAppBar";
-
+const axios = require("axios");
+const emailValidator = require("email-validator");
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -49,7 +50,35 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Login() {
   const classes = useStyles();
-
+  const [userEmail, setUserEmail] = useState({
+    val: "",
+    errorFlag: false,
+    errorMessage: "",
+  });
+  const [userPassword, setUserPassword] = useState({
+    val: "",
+    errorFlag: false,
+    errorMessage: "",
+  });
+  const [error, setError] = useState(""); //this error is the error we get from the server
+  const onClickLogIn = (e) => {
+    e.preventDefault();
+    const userObj = {
+      email: userEmail,
+      mypassword: userPassword,
+    };
+    setError("");
+    axios
+      .post(`http://localhost:2000/api/login`, userObj)
+      .then((res) => {
+        console.log(("response", res));
+        console.log("lollll");
+      })
+      .catch((error) => {
+        console.log(error.response.data.message);
+        setError(error.response.data.message);
+      });
+  };
   return (
     <div styles={{ backgroundColor: "orange" }}>
       <Container component="main" maxWidth="xs">
@@ -72,6 +101,23 @@ export default function Login() {
               name="email"
               autoComplete="email"
               autoFocus
+              error={userEmail.errorFlag}
+              value={userEmail.val}
+              onChange={(e) => {
+                if (!emailValidator.validate(e.target.value)) {
+                  setUserEmail({
+                    val: e.target.value,
+                    errorFlag: true,
+                    errorMessage: "Check your email address",
+                  });
+                } else {
+                  setUserEmail({
+                    val: e.target.value,
+                    errorFlag: false,
+                    errorMessage: "",
+                  });
+                }
+              }}
             />
             <TextField
               variant="outlined"
@@ -83,39 +129,43 @@ export default function Login() {
               type="password"
               id="password"
               autoComplete="current-password"
+              error={userPassword.errorFlag}
+              value={userPassword.val}
+              onChange={(e) => {
+                if (e.target.value.length < 6) {
+                  setUserPassword({
+                    val: e.target.value,
+                    errorFlag: true,
+                    errorMessage: "Number of characters less than 6",
+                  });
+                } else {
+                  setUserPassword({
+                    val: e.target.value,
+                    errorFlag: false,
+                    errorMessage: "",
+                  });
+                }
+              }}
             />
+            <p style={{ color: "red" }}>{userPassword.errorMessage}</p>
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
+            <p style={{ color: "red" }}>{error}</p>
             <Button
               type="submit"
               fullWidth
               variant="contained"
               color="primary"
               className={classes.submit}
-              href="/after"
               disableElevation
+              onClick={onClickLogIn}
             >
               Log In
             </Button>
-            {/* <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid> */}
           </form>
         </div>
-        {/* <Box mt={8}>
-          <Copyright />
-        </Box> */}
       </Container>
     </div>
   );
