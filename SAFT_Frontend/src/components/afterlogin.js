@@ -17,6 +17,12 @@ import Link from "@material-ui/core/Link";
 import ButtonAppBar from "./ButtonAppBar";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
+import logo from "../images/logo.jpeg";
+import FacebookIcon from "@material-ui/icons/Facebook";
+import TwitterIcon from "@material-ui/icons/Twitter";
+import InstagramIcon from "@material-ui/icons/Instagram";
+import YouTubeIcon from "@material-ui/icons/YouTube";
+import LinkedInIcon from "@material-ui/icons/LinkedIn";
 
 const theme = createMuiTheme({
   palette: {
@@ -66,12 +72,25 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   footer: {
-    backgroundColor: theme.palette.background.paper,
+    // backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
   },
   mycard: {
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
+  },
+  logo: {
+    height: "4vh",
+    weight: "4vw",
+  },
+  iconlogo: {
+    height: "3vh",
+    width: "3vh",
+  },
+  itemgridicon: {
+    // alignItems: "center",
+    backgroundColor: "red",
+    justify: "center",
   },
 }));
 
@@ -203,7 +222,12 @@ export default function AfterLogin() {
                         title="Image title"
                       />
                       <CardContent className={classes.cardContent}>
-                        <Typography gutterBottom variant="h6" component="h2">
+                        <Typography
+                          gutterBottom
+                          variant="body1"
+                          component="h2"
+                          align="center"
+                        >
                           {card.serviceName}
                         </Typography>
                         {/* <Typography>
@@ -237,18 +261,28 @@ export default function AfterLogin() {
           </Container>
         </main>
         {/* Footer */}
-        <footer className={classes.footer}>
-          <Typography variant="h6" align="center" gutterBottom>
-            Footer
-          </Typography>
-          <Typography
-            variant="subtitle1"
-            align="center"
-            color="textSecondary"
-            component="p"
+        <footer className={classes.footer} style={{ backgroundColor: "black" }}>
+          <Grid
+            container
+            alignItems="stretch"
+            style={{ backgroundColor: "blue" }}
           >
-            Something here to give the footer a purpose!
-          </Typography>
+            <Grid item>
+              <Typography variant="h3" color="primary">
+                SAFT
+              </Typography>
+            </Grid>
+            <Grid item className={classes.itemgridicon}>
+              <FacebookIcon
+                style={{ color: "white" }}
+                className={classes.iconlogo}
+              />
+              <TwitterIcon style={{ color: "white" }} />
+              <InstagramIcon style={{ color: "white" }} />
+              <YouTubeIcon style={{ color: "white" }} />
+              <LinkedInIcon style={{ color: "white" }} />
+            </Grid>
+          </Grid>
         </footer>
         {/* End footer */}
       </ThemeProvider>
