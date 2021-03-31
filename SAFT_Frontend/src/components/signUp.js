@@ -9,7 +9,8 @@ import LockOpenOutlinedIcon from "@material-ui/icons/LockOpenOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-
+const axios = require("axios");
+const emailValidator = require("email-validator");
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -45,13 +46,49 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
-  const [userFirstName, setUserFirstName] = useState("");
-  const [userLastName, setUserLastName] = useState("");
-  const [userEmail, setUserEmail] = useState("");
-  const [userContactNumber, setUserContactNumber] = useState("");
-  const [userPassword, setUserPassword] = useState("");
-  const onClickSignUp = () => {
-    alert("clicked on signup");
+  const [userFirstName, setUserFirstName] = useState({
+    val: "",
+    errorFlag: false,
+    error: "",
+  });
+  const [userLastName, setUserLastName] = useState({
+    val: "",
+    errorFlag: false,
+    error: "",
+  });
+  const [userEmail, setUserEmail] = useState({
+    val: "",
+    errorFlag: false,
+    error: "",
+  });
+  const [userContactNumber, setUserContactNumber] = useState({
+    val: "",
+    errorFlag: false,
+    error: "",
+  });
+  const [userPassword, setUserPassword] = useState({
+    val: "",
+    errorFlag: false,
+    error: "",
+  });
+  const onClickSignUp = (e) => {
+    e.preventDefault();
+    const userObj = {
+      firstname: userFirstName.val,
+      lastname: userLastName.val,
+      email: userEmail.val,
+      contactnumber: userContactNumber.val,
+      mypassword: userPassword.val,
+    };
+    // console.log(userObj);
+    axios
+      .post(`http://localhost:2000/api/signup`, userObj)
+      .then((res) => {
+        console.log(("response", res));
+      })
+      .catch((error) => {
+        console.log(error.response.data.error);
+      });
   };
   return (
     <div>
@@ -76,7 +113,10 @@ export default function SignUp() {
                   id="firstName"
                   label="First Name"
                   autoFocus
-                  onChange={(val) => setUserFirstName(val)}
+                  value={userFirstName.val}
+                  onChange={(e) => {
+                    setUserFirstName({ val: e.target.value });
+                  }}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -88,6 +128,10 @@ export default function SignUp() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="lname"
+                  value={userLastName.val}
+                  onChange={(e) => {
+                    setUserLastName({ val: e.target.value });
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -99,7 +143,20 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  error={userEmail.errorFlag}
+                  value={userEmail.val}
+                  onChange={(e) => {
+                    setUserEmail(e.target.value);
+                    if (!emailValidator.validate(e.target.value)) {
+                      setUserEmail({
+                        val: e.target.value,
+                        errorFlag: true,
+                        error: "Check your email address",
+                      });
+                    }
+                  }}
                 />
+                <p>{userEmail.error}</p>
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -110,8 +167,25 @@ export default function SignUp() {
                   label="Contact Number"
                   type="tel"
                   id="contact number"
-                  autoComplete="current-password"
+                  autoComplete="tel"
+                  error={userContactNumber.errorFlag}
+                  value={userContactNumber.val}
+                  onChange={(e) => {
+                    if (e.target.value.length != 10) {
+                      setUserContactNumber({
+                        errorFlag: true,
+                        error: "Invalid Contact number",
+                        val: e.target.value,
+                      });
+                    } else {
+                      setUserContactNumber({
+                        val: e.target.value,
+                        errorFlag: false,
+                      });
+                    }
+                  }}
                 />
+                <p>{userContactNumber.error}</p>
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -124,7 +198,24 @@ export default function SignUp() {
                   id="password"
                   autoComplete="current-password"
                   placeholder="********"
+                  error={userPassword.errorFlag}
+                  value={userPassword.val}
+                  onChange={(e) => {
+                    if (e.target.value.length < 6) {
+                      setUserPassword({
+                        val: e.target.value,
+                        errorFlag: true,
+                        error: "Number of characters less than 6",
+                      });
+                    } else {
+                      setUserPassword({
+                        val: e.target.value,
+                        errorFlag: false,
+                      });
+                    }
+                  }}
                 />
+                <p>{userPassword.error}</p>
               </Grid>
             </Grid>
             <Button
@@ -135,6 +226,11 @@ export default function SignUp() {
               className={classes.submit}
               disableElevation
               onClick={onClickSignUp}
+              // disabled={
+              //   userEmail.errorFlag ||
+              //   userContactNumber.errorFlag ||
+              //   userPassword.errorFlag
+              // }
             >
               Sign Up
             </Button>

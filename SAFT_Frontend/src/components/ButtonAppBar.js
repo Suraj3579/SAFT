@@ -48,19 +48,19 @@ const useStyles = makeStyles((theme) => ({
 export default function ButtonAppBar(props) {
   const classes = useStyles();
 
-  if (props.lab == "none") {
+  if (props.lab === "none") {
     return (
       <div className={classes.root}>
-        <AppBar color="white" style={{ position: "relative" }}>
+        <AppBar style={{ position: "relative", backgroundColor: "white" }}>
           <Toolbar>
             <Link href="/" className={classes.title}>
-              <img src={logo} className={classes.logo} />
+              <img src={logo} className={classes.logo} alt="" />
             </Link>
           </Toolbar>
         </AppBar>
       </div>
     );
-  } else if (props.lab == "h") {
+  } else if (props.lab === "h") {
     return (
       <div className={classes.root}>
         <AppBar color="white" style={{ position: "relative" }}>
@@ -74,7 +74,7 @@ export default function ButtonAppBar(props) {
               <MenuIcon />
             </IconButton> */}
             <Link href="/" className={classes.title}>
-              <img src={logo} className={classes.logo} />
+              <img src={logo} className={classes.logo} alt="" />
             </Link>
             <Button size="large" href="/login" className={classes.button}>
               Login
@@ -86,7 +86,7 @@ export default function ButtonAppBar(props) {
         </AppBar>
       </div>
     );
-  } else if (props.lab == "s") {
+  } else if (props.lab === "s") {
     return (
       <div className={classes.root}>
         <AppBar color="white" style={{ position: "relative" }}>
@@ -100,7 +100,7 @@ export default function ButtonAppBar(props) {
               <MenuIcon />
             </IconButton> */}
             <Link href="/" className={classes.title}>
-              <img src={logo} className={classes.logo} />
+              <img src={logo} className={classes.logo} alt="" />
             </Link>
             <Button size="large" href="/login" className={classes.button}>
               Login
@@ -109,7 +109,7 @@ export default function ButtonAppBar(props) {
         </AppBar>
       </div>
     );
-  } else if (props.lab == "l") {
+  } else if (props.lab === "l") {
     return (
       <div className={classes.root}>
         <AppBar color="white" style={{ position: "relative" }}>
@@ -123,7 +123,7 @@ export default function ButtonAppBar(props) {
               <MenuIcon />
             </IconButton> */}
             <Link href="/" className={classes.title}>
-              <img src={logo} className={classes.logo} />
+              <img src={logo} className={classes.logo} alt="" />
             </Link>
 
             <Button size="large" href="/signUp" className={classes.button}>
