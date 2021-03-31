@@ -58,7 +58,9 @@ const useStyles = makeStyles((theme) => ({
   cardGrid: {
     backgroundColor: theme.palette.background.paper,
     paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8),
+    paddingBottom: "1%",
+    boxShadow: "0px 1px 10px 10px #9E9E9E",
+    marginBottom: "10%",
   },
   card: {
     height: "100%",
@@ -72,25 +74,24 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   footer: {
-    // backgroundColor: theme.palette.background.paper,
+    backgroundColor: "black",
     padding: theme.spacing(6),
   },
   mycard: {
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
   },
+  logoIcons: {
+    dislay: "flex",
+  },
   logo: {
     height: "4vh",
     weight: "4vw",
   },
   iconlogo: {
-    height: "3vh",
-    width: "3vh",
-  },
-  itemgridicon: {
-    // alignItems: "center",
-    backgroundColor: "red",
-    justify: "center",
+    height: "4vh",
+    width: "4vh",
+    marginRight: "10px",
   },
 }));
 
@@ -261,26 +262,34 @@ export default function AfterLogin() {
           </Container>
         </main>
         {/* Footer */}
-        <footer className={classes.footer} style={{ backgroundColor: "black" }}>
-          <Grid
-            container
-            alignItems="stretch"
-            style={{ backgroundColor: "blue" }}
-          >
-            <Grid item>
+        <footer className={classes.footer}>
+          <Grid container className={classes.logoIcons}>
+            <Grid item style={{ flex: 2 }}>
               <Typography variant="h3" color="primary">
                 SAFT
               </Typography>
             </Grid>
-            <Grid item className={classes.itemgridicon}>
+            <Grid item style={{ flex: 3, marginTop: "1%" }}>
               <FacebookIcon
                 style={{ color: "white" }}
                 className={classes.iconlogo}
               />
-              <TwitterIcon style={{ color: "white" }} />
-              <InstagramIcon style={{ color: "white" }} />
-              <YouTubeIcon style={{ color: "white" }} />
-              <LinkedInIcon style={{ color: "white" }} />
+              <TwitterIcon
+                style={{ color: "white" }}
+                className={classes.iconlogo}
+              />
+              <InstagramIcon
+                style={{ color: "white" }}
+                className={classes.iconlogo}
+              />
+              <YouTubeIcon
+                style={{ color: "white" }}
+                className={classes.iconlogo}
+              />
+              <LinkedInIcon
+                style={{ color: "white" }}
+                className={classes.iconlogo}
+              />
             </Grid>
           </Grid>
         </footer>
