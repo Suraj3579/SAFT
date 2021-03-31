@@ -25,6 +25,7 @@ exports.signup = (req, res) => {
       hashpassword,
       contactnumber,
       username: Math.random().toString(),
+      role: "admin"
     });
     newuser.save((error, data) => {
       if (data) {
@@ -52,7 +53,7 @@ exports.login = (req, res) => {
     if (user) {
       if (
         (await user.authenticate(req.body.mypassword)) &&
-        user.role === "user"
+        user.role === "admin"
       ) {
         const token = generateJwtToken(user._id, user.role);
         const {
