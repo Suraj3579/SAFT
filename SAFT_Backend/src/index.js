@@ -1,7 +1,6 @@
 const express = require("express");
 const env = require("dotenv");
 const app = express();
-const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const url = `mongodb+srv://saftdb:saftpassword@cluster0.jt8vf.mongodb.net/saft?retryWrites=true&w=majority?authSource=admin`
 
@@ -28,10 +27,12 @@ mongoose.connect(url,
 //routes
 const userRoutes = require('./routes/auth');
 const adminRoutes = require('./routes/admin/auth');
+const servicesRoutes = require('./routes/services');
 
-app.use(bodyParser());
+app.use(express.json());
 app.use('/api', userRoutes);
 app.use('/api', adminRoutes);
+app.use('/api', servicesRoutes);
 
 app.get('/',(req,res,next) => {
     res.status(200).json({
