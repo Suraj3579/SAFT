@@ -3,12 +3,13 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const generateJwtToken = (_id, role) => {
-  return jwt.sign({ _id, role }, process.env.JWT_SECRET, {
+  return jwt.sign({ _id, role }, "tuturu", {
     expiresIn: "1d",
   });
 };
 
 exports.signup = (req, res) => {
+  console.log(req.body);
   User.findOne({
     email: req.body.email,
   }).exec(async (error, user) => {
@@ -42,6 +43,7 @@ exports.signup = (req, res) => {
 };
 
 exports.login = (req, res) => {
+  console.log(req.body);
   User.findOne({
     email: req.body.email,
   }).exec(async (error, user) => {
