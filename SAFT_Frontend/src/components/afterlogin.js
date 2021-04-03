@@ -17,6 +17,12 @@ import Link from "@material-ui/core/Link";
 import ButtonAppBar from "./ButtonAppBar";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
+import logo from "../images/logo.jpeg";
+import FacebookIcon from "@material-ui/icons/Facebook";
+import TwitterIcon from "@material-ui/icons/Twitter";
+import InstagramIcon from "@material-ui/icons/Instagram";
+import YouTubeIcon from "@material-ui/icons/YouTube";
+import LinkedInIcon from "@material-ui/icons/LinkedIn";
 
 const theme = createMuiTheme({
   palette: {
@@ -52,7 +58,9 @@ const useStyles = makeStyles((theme) => ({
   cardGrid: {
     backgroundColor: theme.palette.background.paper,
     paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8),
+    paddingBottom: "1%",
+    boxShadow: "0px 1px 10px 10px #9E9E9E",
+    marginBottom: "10%",
   },
   card: {
     height: "100%",
@@ -66,12 +74,24 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   footer: {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: "black",
     padding: theme.spacing(6),
   },
   mycard: {
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
+  },
+  logoIcons: {
+    dislay: "flex",
+  },
+  logo: {
+    height: "4vh",
+    weight: "4vw",
+  },
+  iconlogo: {
+    height: "4vh",
+    width: "4vh",
+    marginRight: "10px",
   },
 }));
 
@@ -203,7 +223,12 @@ export default function AfterLogin() {
                         title="Image title"
                       />
                       <CardContent className={classes.cardContent}>
-                        <Typography gutterBottom variant="h6" component="h2">
+                        <Typography
+                          gutterBottom
+                          variant="body1"
+                          component="h2"
+                          align="center"
+                        >
                           {card.serviceName}
                         </Typography>
                         {/* <Typography>
@@ -238,17 +263,35 @@ export default function AfterLogin() {
         </main>
         {/* Footer */}
         <footer className={classes.footer}>
-          <Typography variant="h6" align="center" gutterBottom>
-            Footer
-          </Typography>
-          <Typography
-            variant="subtitle1"
-            align="center"
-            color="textSecondary"
-            component="p"
-          >
-            Something here to give the footer a purpose!
-          </Typography>
+          <Grid container className={classes.logoIcons}>
+            <Grid item style={{ flex: 2 }}>
+              <Typography variant="h3" color="primary">
+                SAFT
+              </Typography>
+            </Grid>
+            <Grid item style={{ flex: 3, marginTop: "1%" }}>
+              <FacebookIcon
+                style={{ color: "white" }}
+                className={classes.iconlogo}
+              />
+              <TwitterIcon
+                style={{ color: "white" }}
+                className={classes.iconlogo}
+              />
+              <InstagramIcon
+                style={{ color: "white" }}
+                className={classes.iconlogo}
+              />
+              <YouTubeIcon
+                style={{ color: "white" }}
+                className={classes.iconlogo}
+              />
+              <LinkedInIcon
+                style={{ color: "white" }}
+                className={classes.iconlogo}
+              />
+            </Grid>
+          </Grid>
         </footer>
         {/* End footer */}
       </ThemeProvider>

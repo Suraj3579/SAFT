@@ -54,22 +54,22 @@ export default function SignUp() {
   const [userLastName, setUserLastName] = useState({
     val: "",
     errorFlag: false,
-    error: "",
+    errorMessage: "",
   });
   const [userEmail, setUserEmail] = useState({
     val: "",
     errorFlag: false,
-    error: "",
+    errorMessage: "",
   });
   const [userContactNumber, setUserContactNumber] = useState({
     val: "",
     errorFlag: false,
-    error: "",
+    errorMessage: "",
   });
   const [userPassword, setUserPassword] = useState({
     val: "",
     errorFlag: false,
-    error: "",
+    errorMessage: "",
   });
   const onClickSignUp = (e) => {
     e.preventDefault();
@@ -146,17 +146,22 @@ export default function SignUp() {
                   error={userEmail.errorFlag}
                   value={userEmail.val}
                   onChange={(e) => {
-                    setUserEmail(e.target.value);
                     if (!emailValidator.validate(e.target.value)) {
                       setUserEmail({
                         val: e.target.value,
                         errorFlag: true,
-                        error: "Check your email address",
+                        errorMessage: "Check your email address",
+                      });
+                    } else {
+                      setUserEmail({
+                        val: e.target.value,
+                        errorFlag: false,
+                        errorMessage: "",
                       });
                     }
                   }}
                 />
-                <p>{userEmail.error}</p>
+                <p>{userEmail.errorMessage}</p>
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -174,7 +179,7 @@ export default function SignUp() {
                     if (e.target.value.length != 10) {
                       setUserContactNumber({
                         errorFlag: true,
-                        error: "Invalid Contact number",
+                        errorMessage: "Invalid Contact number",
                         val: e.target.value,
                       });
                     } else {
@@ -185,7 +190,7 @@ export default function SignUp() {
                     }
                   }}
                 />
-                <p>{userContactNumber.error}</p>
+                <p>{userContactNumber.errorMessage}</p>
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -205,7 +210,7 @@ export default function SignUp() {
                       setUserPassword({
                         val: e.target.value,
                         errorFlag: true,
-                        error: "Number of characters less than 6",
+                        errorMessage: "Number of characters less than 6",
                       });
                     } else {
                       setUserPassword({
@@ -215,7 +220,7 @@ export default function SignUp() {
                     }
                   }}
                 />
-                <p>{userPassword.error}</p>
+                <p>{userPassword.errorMessage}</p>
               </Grid>
             </Grid>
             <Button
