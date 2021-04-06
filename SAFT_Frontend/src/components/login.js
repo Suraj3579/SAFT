@@ -66,26 +66,25 @@ export default function Login() {
   let history = useHistory();
 
   const onClickLogIn = (e) => {
-    // e.preventDefault();
-    // const userObj = {
-    //   email: userEmail,
-    //   mypassword: userPassword,
-    // };
-    // setError("");
-    // axios
-    //   .post(`http://localhost:2000/api/login`, userObj)
-    //   .then((res) => {
-    //     console.log(("response", res));
-    //     console.log("lollll");
-    //   })
-    //   .catch((error) => {
-    //     console.log(error.response.data.message);
-    //     setError(error.response.data.message);
-    //   });
-    // if (!error) {
-    //   //go to /after page
-    // }
-    history.push("/after", { useremail: userEmail.val, id: 10 });
+    e.preventDefault();
+    const userObj = {
+      email: userEmail.val,
+      mypassword: userPassword.val,
+    };
+    setError("");
+    axios
+      .post(`http://localhost:2000/api/login`, userObj)
+      .then((res) => {
+        console.log(("response", res));
+        history.push("/after", {
+          useremail: userEmail.val,
+          userfullname: res.data.user.fullname,
+        });
+      })
+      .catch((error) => {
+        console.log(error.response.data.message);
+        setError(error.response.data.message);
+      });
   };
   return (
     <div styles={{ backgroundColor: "orange" }}>

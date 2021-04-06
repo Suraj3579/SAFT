@@ -163,7 +163,7 @@ const cards = [
 export default function AfterLogin() {
   const classes = useStyles();
   const history = useHistory();
-  const { useremail } = history.location.state;
+  const { useremail, userfullname } = history.location.state;
   return (
     <React.Fragment>
       <ThemeProvider theme={theme}>
@@ -173,6 +173,7 @@ export default function AfterLogin() {
           {/* Hero unit */}
           <div className={classes.heroContent}>
             <Container maxWidth="me">
+              <Typography align="center">Welcome {userfullname}</Typography>
               <Typography
                 component="h1"
                 variant="h2"
