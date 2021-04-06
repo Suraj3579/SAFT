@@ -1,13 +1,13 @@
 const Cart =require('../models/cart')
 
 exports.addItemToCart = (req,res) => {
-    cart.findOne({user: req.user_id})
+    Cart.findOne({user: req.user_id})
     .exec((error,cart) => {
         if(error) return res.status(400).json({error});
         if(cart){
-        cart.cartItems.find(c => c.serviceItems == req.bodu.cartItems.serviceItems)
+        cart.cartItems.find(c => c.serviceItems == req.body.cartItems.serviceItems)
 
-            cart.findOneAndUpdate({user: req.user._id},{
+            Cart.findOneAndUpdate({user: req.user._id},{
                 "$push": {  
                     "cartItems":req.body.cartItems
                 }
