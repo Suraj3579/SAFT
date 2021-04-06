@@ -23,6 +23,7 @@
     "express-validator": "^6.10.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.2",
+    "shortid": "^2.2.16",
     "slugify": "^1.5.0"
   },
   "devDependencies": {

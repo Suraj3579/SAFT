@@ -2,7 +2,8 @@ const express = require("express");
 const env = require("dotenv");
 const app = express();
 const mongoose = require("mongoose");
-const url = `mongodb+srv://saftdb:saftpassword@cluster0.jt8vf.mongodb.net/saft?retryWrites=true&w=majority?authSource=admin`;
+const url = `mongodb+srv://saftdb:saftpassword@cluster0.jt8vf.mongodb.net/saft?retryWrites=true&w=majority?authSource=admin`
+const path = require("path");
 const cors = require("cors");
 //environment variable
 env.config();
@@ -25,20 +26,25 @@ mongoose
   });
 
 //routes
-const userRoutes = require("./routes/auth");
-const adminRoutes = require("./routes/admin/auth");
-const servicesRoutes = require("./routes/services");
+const userRoutes = require('./routes/auth');
+const adminRoutes = require('./routes/admin/auth');
+const servicesRoutes = require('./routes/services');
+const serviceItemsRoutes = require('./routes/serviceItems');
+const cartRoutes = require('./routes/cart');
 
 app.use(cors());
 app.use(express.json());
-app.use("/api", userRoutes);
-app.use("/api", adminRoutes);
-app.use("/api", servicesRoutes);
+app.use("/public", express.static(path.join(__dirname, "uploads")))
+app.use('/api', userRoutes);
+app.use('/api', adminRoutes);
+app.use('/api', servicesRoutes);
+app.use('/api', serviceItemsRoutes);
+app.use('/api', cartRoutes);
 
-app.get("/", (req, res, next) => {
-  res.status(200).json({
-    message: "Hello",
-  });
+app.get('/',(req,res,next) => {
+    res.status(200).json({
+        message:"Hello"
+    });
 });
 
 app.post("/data", (req, res, next) => {
