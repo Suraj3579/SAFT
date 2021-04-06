@@ -75,10 +75,10 @@ export default function Orders() {
         <TableHead>
           <TableRow>
             <TableCell>Date</TableCell>
-            <TableCell>Name</TableCell>
-            <TableCell>Ship To</TableCell>
+            <TableCell>Technician Name</TableCell>
+            <TableCell>Service Taken</TableCell>
             <TableCell>Payment Method</TableCell>
-            <TableCell align="right">Sale Amount</TableCell>
+            <TableCell align="right">Amount Paid</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

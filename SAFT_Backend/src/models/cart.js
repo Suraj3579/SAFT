@@ -10,7 +10,7 @@ const cartSchema = new mongoose.Schema(
     },
     cartItems: [
         {
-            item : {
+            serviceitem : {
               type : mongoose.Schema.Types.ObjectId,
               ref: 'ServiceItems',
               required : true
