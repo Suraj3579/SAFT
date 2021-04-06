@@ -217,7 +217,7 @@ export default function AfterLogin() {
                   className={classes.mycard}
                 >
                   <Card className={classes.card} elevation={0} square="true">
-                    <CardActionArea>
+                    <CardActionArea href="/products">
                       <CardMedia
                         className={classes.cardMedia}
                         image={card.image}

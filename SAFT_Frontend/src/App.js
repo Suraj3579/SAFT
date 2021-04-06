@@ -6,6 +6,8 @@ import Login from "./components/login";
 import Home from "./components/home";
 import SignUp from "./components/signUp";
 import Notfound from "./components/notfound";
+import Products from "./components/products";
+import Dashboard from "./components/Dashboard";
 
 const App = () => {
   return (
@@ -22,13 +24,22 @@ const App = () => {
           <Route path="/signUp">
             <SignUp />
           </Route> */}
-          <Route path="/">
-            <Home />
-          </Route>
+
           <Route path="/after">
             <AfterLogin />
           </Route>
-          {/* <Route path="*" exact component={Notfound} /> */}
+          <Route path="/products">
+            <Products />
+          </Route>
+          <Route path="/dashboard">
+            <Dashboard />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+          <Route path="*">
+            <Notfound />
+          </Route>
         </Switch>
       </Router>
     </div>
