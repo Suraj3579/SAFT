@@ -35,10 +35,10 @@ const Signup = (props) => {
     e.preventDefault();
 
     const user = {
-      firstName,
-      lastName,
+      firstname: firstName,
+      lastname: lastName,
       email,
-      password,
+      mypassword: password,
     };
 
     dispatch(signup(user));
