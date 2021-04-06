@@ -5,6 +5,8 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import { Link } from "@material-ui/core";
 import logo from "../images/logo.jpeg";
+import cart from "../images/cart-plus-solid.svg";
+import user from "../images/user-circle-solid.svg";
 // import { createMuiTheme } from "@material-ui/core/styles";
 
 // const theme = createMuiTheme({
@@ -42,6 +44,25 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     height: "8vh",
     weight: "8vw",
+  },
+
+  cart: {
+    marginRight: "50px",
+  },
+
+  user: {
+    marginRight: "20px",
+  },
+
+  cartspan: {
+    background: "orange",
+    borderRadius: "20px",
+    color: "white",
+    position: "absolute",
+    top: "15px",
+    right: "115px",
+    padding: "5px 7px",
+    fontSize: "10px",
   },
 }));
 
@@ -129,6 +150,27 @@ export default function ButtonAppBar(props) {
             <Button size="large" href="/signUp" className={classes.button}>
               SignUp
             </Button>
+          </Toolbar>
+        </AppBar>
+      </div>
+    );
+  } else if (props.lab == "a") {
+    return (
+      <div className={classes.root}>
+        <AppBar style={{ position: "relative", backgroundColor: "white" }}>
+          <Toolbar>
+            <Link href="/" className={classes.title}>
+              <img src={logo} className={classes.logo} alt="" />
+            </Link>
+            <div>
+              <span className={classes.cartspan}>0</span>
+              <Link href="/cart">
+                <img src={cart} className={classes.cart} alt="" width="30" />
+              </Link>
+            </div>
+            <Link href="/profile">
+              <img src={user} className={classes.user} alt="" width="30" />
+            </Link>
           </Toolbar>
         </AppBar>
       </div>

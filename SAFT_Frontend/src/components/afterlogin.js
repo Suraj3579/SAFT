@@ -23,6 +23,7 @@ import TwitterIcon from "@material-ui/icons/Twitter";
 import InstagramIcon from "@material-ui/icons/Instagram";
 import YouTubeIcon from "@material-ui/icons/YouTube";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
+import cleaningImage from "../images/broom-solid.svg";
 
 const theme = createMuiTheme({
   palette: {
@@ -49,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   heroContent: {
-    backgroundColor: theme.palette.background.paper,
+    // backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(8, 0, 6),
   },
   heroButtons: {
@@ -69,6 +70,7 @@ const useStyles = makeStyles((theme) => ({
   },
   cardMedia: {
     paddingTop: "56.25%", // 16:9
+    width: "30",
   },
   cardContent: {
     flexGrow: 1,
@@ -89,9 +91,9 @@ const useStyles = makeStyles((theme) => ({
     weight: "4vw",
   },
   iconlogo: {
-    height: "4vh",
+    height: "3vh",
     width: "4vh",
-    marginRight: "10px",
+    marginRight: "3px",
   },
 }));
 
@@ -100,8 +102,7 @@ const cards = [
   {
     id: 1,
     serviceName: "Cleaning",
-    image:
-      "https://image.freepik.com/free-vector/poster-template-house-cleaning-services-with-various-cleaning-items_1416-1235.jpg",
+    image: cleaningImage,
   },
   {
     id: 2,
@@ -165,7 +166,7 @@ export default function AfterLogin() {
     <React.Fragment>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <ButtonAppBar lab="none" />
+        <ButtonAppBar lab="a" />
         <main>
           {/* Hero unit */}
           <div className={classes.heroContent}>
@@ -270,10 +271,12 @@ export default function AfterLogin() {
               </Typography>
             </Grid>
             <Grid item style={{ flex: 3, marginTop: "1%" }}>
-              <FacebookIcon
-                style={{ color: "white" }}
-                className={classes.iconlogo}
-              />
+              <a href="www.facebook.com">
+                <FacebookIcon
+                  style={{ color: "white" }}
+                  className={classes.iconlogo}
+                />
+              </a>
               <TwitterIcon
                 style={{ color: "white" }}
                 className={classes.iconlogo}

@@ -5,6 +5,7 @@ import AfterLogin from "./components/afterlogin";
 import Login from "./components/login";
 import Home from "./components/home";
 import SignUp from "./components/signUp";
+import Notfound from "./components/notfound";
 
 const App = () => {
   return (
@@ -15,15 +16,19 @@ const App = () => {
           <Route path="/after">
             <AfterLogin />
           </Route>
-          <Route path="/login">
+          {/* <Route path="/login">
             <Login />
           </Route>
           <Route path="/signUp">
             <SignUp />
-          </Route>
+          </Route> */}
           <Route path="/">
             <Home />
           </Route>
+          <Route path="/after">
+            <AfterLogin />
+          </Route>
+          <Route path="*" exact component={Notfound} />
         </Switch>
       </Router>
     </div>
