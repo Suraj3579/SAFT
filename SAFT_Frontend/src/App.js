@@ -28,7 +28,7 @@ const App = () => {
           <Route path="/after">
             <AfterLogin />
           </Route>
-          <Route path="*" exact component={Notfound} />
+          {/* <Route path="*" exact component={Notfound} /> */}
         </Switch>
       </Router>
     </div>
