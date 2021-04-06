@@ -16,16 +16,15 @@ exports.signup = (req, res) => {
       return res.status(400).json({
         message: "User already Registered",
       });
-    const { firstname, lastname, email, mypassword, contactnumber } = req.body;
+    const { firstname, lastname, email, mypassword } = req.body;
     const hashpassword = await bcrypt.hash(mypassword, 10);
     const newuser = new User({
       firstname,
       lastname,
       email,
       hashpassword,
-      contactnumber,
       username: Math.random().toString(),
-      role: "admin"
+      role: "admin",
     });
     newuser.save((error, data) => {
       if (data) {
@@ -56,21 +55,13 @@ exports.login = (req, res) => {
         user.role === "admin"
       ) {
         const token = generateJwtToken(user._id, user.role);
-        const {
-          firstname,
-          lastname,
-          email,
-          contactnumber,
-          role,
-          fullname,
-        } = user;
+        const { firstname, lastname, email, role, fullname } = user;
         res.status(200).json({
           token,
           user: {
             firstname,
             lastname,
             email,
-            contactnumber,
             role,
             fullname,
           },
