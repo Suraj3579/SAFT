@@ -24,6 +24,7 @@ import InstagramIcon from "@material-ui/icons/Instagram";
 import YouTubeIcon from "@material-ui/icons/YouTube";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import cleaningImage from "../images/broom-solid.svg";
+import { useHistory } from "react-router";
 
 const theme = createMuiTheme({
   palette: {
@@ -161,7 +162,8 @@ const cards = [
 
 export default function AfterLogin() {
   const classes = useStyles();
-
+  const history = useHistory();
+  const { useremail } = history.location.state;
   return (
     <React.Fragment>
       <ThemeProvider theme={theme}>

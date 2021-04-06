@@ -11,6 +11,8 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import ButtonAppBar from "./ButtonAppBar";
+import { useHistory } from "react-router-dom";
+
 const axios = require("axios");
 const emailValidator = require("email-validator");
 function Copyright() {
@@ -61,23 +63,29 @@ export default function Login() {
     errorMessage: "",
   });
   const [error, setError] = useState(""); //this error is the error we get from the server
+  let history = useHistory();
+
   const onClickLogIn = (e) => {
-    e.preventDefault();
-    const userObj = {
-      email: userEmail,
-      mypassword: userPassword,
-    };
-    setError("");
-    axios
-      .post(`http://localhost:2000/api/login`, userObj)
-      .then((res) => {
-        console.log(("response", res));
-        console.log("lollll");
-      })
-      .catch((error) => {
-        console.log(error.response.data.message);
-        setError(error.response.data.message);
-      });
+    // e.preventDefault();
+    // const userObj = {
+    //   email: userEmail,
+    //   mypassword: userPassword,
+    // };
+    // setError("");
+    // axios
+    //   .post(`http://localhost:2000/api/login`, userObj)
+    //   .then((res) => {
+    //     console.log(("response", res));
+    //     console.log("lollll");
+    //   })
+    //   .catch((error) => {
+    //     console.log(error.response.data.message);
+    //     setError(error.response.data.message);
+    //   });
+    // if (!error) {
+    //   //go to /after page
+    // }
+    history.push("/after", { useremail: userEmail.val, id: 10 });
   };
   return (
     <div styles={{ backgroundColor: "orange" }}>
@@ -158,6 +166,7 @@ export default function Login() {
               fullWidth
               variant="contained"
               color="primary"
+              disabled={userEmail.errorFlag || userPassword.errorFlag}
               className={classes.submit}
               disableElevation
               onClick={onClickLogIn}
