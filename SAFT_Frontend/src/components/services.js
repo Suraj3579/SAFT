@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import CameraIcon from "@material-ui/icons/PhotoCamera";
@@ -22,6 +22,9 @@ import ButtonAppBar from "./ButtonAppBar";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 import StarRateIcon from "@material-ui/icons/StarRate";
 import star from "../images/star-solid.svg";
+import ruppee from "../images/rupee-sign-solid.svg";
+import Cards from "./card";
+import Slider from "react-slick";
 
 const theme = createMuiTheme({
   palette: {
@@ -77,10 +80,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const cards = [1, 2, 3, 4];
+const cards = [1, 2, 3, 4, 5, 6];
 
 export default function Services() {
   const classes = useStyles();
+
+  const settings = {
+    arrows: true,
+    accessibility: true,
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    focusOnSelect: true,
+  };
 
   return (
     <React.Fragment>
@@ -110,76 +124,20 @@ export default function Services() {
               </Typography>
             </Container>
           </div>
-          <Container className={classes.cardGrid} maxWidth="xs">
-            {/* End hero unit */}
-            <Grid container spacing={4}>
-              {cards.map((card) => (
-                <Grid item key={card} xs={12} sm={12} md={12}>
-                  <Card className={classes.card}>
-                    <CardMedia
-                      className={classes.cardMedia}
-                      image="https://source.unsplash.com/random"
-                      title="Image title"
-                    />
-                    <CardContent className={classes.cardContent}>
-                      <Typography gutterBottom variant="h5" component="h2">
-                        Name of the Service
-                      </Typography>
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          flexWrap: "wrap",
-                        }}
-                      >
-                        <StarRateIcon
-                          style={{ color: "green", marginLeft: "0px" }}
-                          edge="start"
-                        />
-                        <Typography
-                          variant="subtitle1"
-                          style={{ color: "green" }}
-                        >
-                          4.45
-                        </Typography>
-                      </div>
-                      <Typography
-                        variant="subtitle1"
-                        gutterBottom="true"
-                        style={{ color: "crimson" }}
-                      >
-                        $99
-                      </Typography>
-                      <Button
-                        variant="contained"
-                        size="small"
-                        color="primary"
-                        style={{ marginBottom: "10px" }}
-                      >
-                        ADD TO CART
-                      </Button>
-                      <hr
-                        style={{
-                          color: "grey",
-                          backgroundColor: "grey",
-                          height: 1,
-                        }}
-                      />
-                      <Typography variation="caption">
-                        This is the first line of the content.The second line
-                        would be second line only.
-                      </Typography>
-                    </CardContent>
-                    {/* <CardActions>
-                      <Button variant="contained" size="small" color="primary">
-                        Edit
-                      </Button>
-                    </CardActions> */}
-                  </Card>
-                </Grid>
-              ))}
-            </Grid>
-          </Container>
+          <Slider {...settings} style={{ margin: "20px" }}>
+            {cards.map((card) => (
+              <div key={card} style={{ padding: "20px" }}>
+                <Cards cards1={card} />
+              </div>
+            ))}
+          </Slider>
+          <Slider {...settings}>
+            {cards.map((card) => (
+              <div key={card} style={{ padding: "20px" }}>
+                <Cards cards1={card} />
+              </div>
+            ))}
+          </Slider>
         </main>
         {/* Footer */}
         <footer className={classes.footer}>

@@ -9,6 +9,7 @@ import Notfound from "./components/notfound";
 import Products from "./components/products";
 import Dashboard from "./components/Dashboard";
 import Services from "./components/services";
+import SimpleSlider from "./components/slicker";
 
 const App = () => {
   return (
@@ -37,6 +38,9 @@ const App = () => {
           </Route>
           <Route path="/services">
             <Services />
+          </Route>
+          <Route path="/slicker">
+            <SimpleSlider />
           </Route>
           <Route path="/">
             <Home />
