@@ -124,6 +124,12 @@ export default function Services() {
               </Typography>
             </Container>
           </div>
+          <Typography
+            variant="h4"
+            style={{ marginLeft: "50px", marginTop: "20px" }}
+          >
+            Service Category
+          </Typography>
           <Slider {...settings} style={{ margin: "20px" }}>
             {cards.map((card) => (
               <div key={card} style={{ padding: "20px" }}>
@@ -131,7 +137,22 @@ export default function Services() {
               </div>
             ))}
           </Slider>
-          <Slider {...settings}>
+          <hr
+            style={{
+              color: "orange",
+              backgroundColor: "orange",
+              height: 1,
+              marginLeft: "50px",
+              marginRight: "50px",
+            }}
+          />
+          <Typography
+            variant="h4"
+            style={{ marginLeft: "50px", marginTop: "20px" }}
+          >
+            Service Category
+          </Typography>
+          <Slider {...settings} style={{ margin: "20px" }}>
             {cards.map((card) => (
               <div key={card} style={{ padding: "20px" }}>
                 <Cards cards1={card} />
