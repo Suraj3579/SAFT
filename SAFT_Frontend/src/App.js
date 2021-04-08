@@ -8,6 +8,7 @@ import SignUp from "./components/signUp";
 import Notfound from "./components/notfound";
 import Products from "./components/products";
 import Dashboard from "./components/Dashboard";
+import Services from "./components/services";
 
 const App = () => {
   return (
@@ -33,6 +34,9 @@ const App = () => {
           </Route>
           <Route path="/dashboard">
             <Dashboard />
+          </Route>
+          <Route path="/services">
+            <Services />
           </Route>
           <Route path="/">
             <Home />
