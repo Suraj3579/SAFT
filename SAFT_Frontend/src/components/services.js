@@ -110,7 +110,7 @@ export default function Services() {
               </Typography>
             </Container>
           </div>
-          <Container className={classes.cardGrid} maxWidth="sm">
+          <Container className={classes.cardGrid} maxWidth="xs">
             {/* End hero unit */}
             <Grid container spacing={4}>
               {cards.map((card) => (
@@ -125,17 +125,46 @@ export default function Services() {
                       <Typography gutterBottom variant="h5" component="h2">
                         Name of the Service
                       </Typography>
-                      <StarRateIcon style={{ color: "green" }} edge="start" />
-                      {/* <img
-                        src={star}
-                        className={classes.star}
-                        alt=""
-                        width="15"
-                      /> */}
-                      <Typography variant="subtitle1">$99</Typography>
-                      <Button variant="contained" size="small" color="primary">
-                        ADD
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          flexWrap: "wrap",
+                        }}
+                      >
+                        <StarRateIcon
+                          style={{ color: "green", marginLeft: "0px" }}
+                          edge="start"
+                        />
+                        <Typography
+                          variant="subtitle1"
+                          style={{ color: "green" }}
+                        >
+                          4.45
+                        </Typography>
+                      </div>
+                      <Typography
+                        variant="subtitle1"
+                        gutterBottom="true"
+                        style={{ color: "crimson" }}
+                      >
+                        $99
+                      </Typography>
+                      <Button
+                        variant="contained"
+                        size="small"
+                        color="primary"
+                        style={{ marginBottom: "10px" }}
+                      >
+                        ADD TO CART
                       </Button>
+                      <hr
+                        style={{
+                          color: "grey",
+                          backgroundColor: "grey",
+                          height: 1,
+                        }}
+                      />
                       <Typography variation="caption">
                         This is the first line of the content.The second line
                         would be second line only.
