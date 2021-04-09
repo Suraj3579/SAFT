@@ -14,7 +14,7 @@ const AddCategoryModal = (props) => {
         setCategoryName,
         parentCategoryId,
         setParentCategoryId,
-        categoryList,
+        servicesList,
         handleCategoryImage,
         onSubmit
     } = props;
@@ -35,24 +35,24 @@ const AddCategoryModal = (props) => {
                         className="form-control-sm"
                     />
                 </Col>
-                <Col>
+                {/* <Col>
                     <select
                         className="form-control form-control-sm"
                         value={parentCategoryId}
                         onChange={(e) => setParentCategoryId(e.target.value)}>
                         <option>select category</option>
                         {
-                            categoryList.map(option =>
+                            servicesList.map(option =>
                                 <option key={option.value} value={option.value}>{option.name}</option>)
                         }
                     </select>
-                </Col>
+                </Col> */}
             </Row>
-            <Row>
+            {/* <Row>
                 <Col>
                     <input type="file" name="categoryImage" onChange={handleCategoryImage} />
                 </Col>
-            </Row>
+            </Row> */}
 
 
         </Modal>

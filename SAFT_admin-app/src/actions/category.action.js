@@ -5,15 +5,15 @@ const getAllCategory = () => {
     return async dispatch => {
 
         dispatch({ type: categoryConstansts.GET_ALL_CATEGORIES_REQUEST });
-        const res = await axios.get(`category/getcategory`);
-        console.log(res);
+        const res = await axios.get(`services/getservices`);
+        // console.log(res);
         if (res.status === 200) {
 
-            const { categoryList } = res.data;
-
+            const { servicesList } = res.data;
+            // return servicesList;
             dispatch({
                 type: categoryConstansts.GET_ALL_CATEGORIES_SUCCESS,
-                payload: { categories: categoryList }
+                payload: { categories: servicesList }
             });
         } else {
             dispatch({
@@ -26,12 +26,12 @@ const getAllCategory = () => {
     }
 }
 
-export const addCategory = (form) => {
+export const addCategory = (userObj) => {
     return async dispatch => {
         dispatch({ type: categoryConstansts.ADD_NEW_CATEGORY_REQUEST });
         try {
-            const res = await axios.post(`/category/create`, form);
-            if (res.status === 201) {
+            const res = await axios.post(`/services/create`, userObj);
+            if (res.status === 200) {
                 dispatch({
                     type: categoryConstansts.ADD_NEW_CATEGORY_SUCCESS,
                     payload: { category: res.data.category }
