@@ -5,7 +5,7 @@ import Input from '../../components/UI/Input';
 import { Container, Row, Col } from 'react-bootstrap';
 import {linearCategories, linearCategoriesParent} from '../../helpers/linearCategories';
 import { useSelector, useDispatch } from 'react-redux';
-import { createPage } from '../../actions';
+import { createPage, getAllCategory } from '../../actions';
 
 /**
 * @author
@@ -14,6 +14,7 @@ import { createPage } from '../../actions';
 
 const NewPage = (props) => {
 
+    const category = useSelector(state => state.category);
     const [createModal, setCreateModal] = useState(false);
     const [title, setTitle] = useState('');
     const [categories, setCategories] = useState([]);
@@ -29,11 +30,11 @@ const NewPage = (props) => {
     const [banners, setBanners] = useState([]);
     const [products, setProducts] = useState([]);
     const dispatch = useDispatch();
-    const category = useSelector(state => state.category);
     const page = useSelector(state => state.page);
 
 
     useEffect(() => {
+        dispatch(getAllCategory());
         setCategories(linearCategories(category.categories));
         setParentCategories(linearCategoriesParent(category.categories));
     }, [category]);
@@ -244,7 +245,7 @@ const NewPage = (props) => {
                 :
                 <>
                     {renderCreatePageModal()}
-                    <button onClick={() => setCreateModal(true)}>Create Page</button>
+                    <button onClick={() => setCreateModal(true)}>Create/Edit subservice</button>
                 </>
             }
             
