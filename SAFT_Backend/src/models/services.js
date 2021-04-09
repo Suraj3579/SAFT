@@ -19,6 +19,9 @@ const servicesSchema = new mongoose.Schema(
     parentId: {
       type: String,
     },
+    servicePictures: [
+      { img: { type: String } }
+    ],
     // createdBy: {
     //   type: mongoose.Schema.Types.ObjectId,
     //   ref: "User",

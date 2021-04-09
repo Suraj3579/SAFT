@@ -1,5 +1,6 @@
 const express = require("express");
 const slugify = require("slugify");
+const shortid = require("shortid");
 const Service = require("../models/services");
 
 function createservices(services, parentId = null) {
@@ -18,6 +19,7 @@ function createservices(services, parentId = null) {
       slug: servi.slug,
       parentId: servi.parentId,
       type: servi.type,
+      servicePictures: servi.servicePictures,
       children: createservices(services, servi._id),
     });
   }
@@ -26,15 +28,23 @@ function createservices(services, parentId = null) {
 }
 
 exports.createService = (req, res) => {
-  const servicesObj = {
+  let servicePictures = [];
+
+  if (req.files.length > 0) {
+    servicePictures = req.files.map((file) => {
+      return { img: file.location };
+    });
+  }
+  const servicesObj = new Service({
     name: req.body.name,
     slug: slugify(req.body.name),
-  };
+    servicePictures,
+  });
   if (req.body.parentId) {
     servicesObj.parentId = req.body.parentId;
   }
-  const serv = new Service(servicesObj);
-  serv.save((error, service) => {
+  //const serv = new Service(servicesObj);
+  servicesObj.save((error, service) => {
     if (error) {
       return res.status(400).json({
         error,
@@ -62,4 +72,8 @@ exports.getServices = (req, res, next) => {
       });
     }
   });
+};
+
+exports.deleteServices =(req,res,next) =>{
+
 };
