@@ -35,7 +35,7 @@ const AddCategoryModal = (props) => {
                         className="form-control-sm"
                     />
                 </Col>
-                {/* <Col>
+                <Col>
                     <select
                         className="form-control form-control-sm"
                         value={parentCategoryId}
@@ -46,7 +46,7 @@ const AddCategoryModal = (props) => {
                                 <option key={option.value} value={option.value}>{option.name}</option>)
                         }
                     </select>
-                </Col> */}
+                </Col>
             </Row>
             {/* <Row>
                 <Col>
