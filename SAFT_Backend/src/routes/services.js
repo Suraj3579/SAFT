@@ -2,7 +2,7 @@ const express=require("express");
 const router = express.Router();
 const multer = require("multer");
 const shortid = require("shortid");
-const {createService , getServices} = require('../controller/services');
+const {createService , getServices, deleteServices} = require('../controller/services');
 const {adminAccess, requireSignin} = require('../middleware/index');
 const path = require("path");
 const storage = multer.diskStorage({
@@ -18,5 +18,6 @@ const upload = multer({ storage });
 
 router.post('/services/create',requireSignin,adminAccess,upload.array("servicePictures"),createService);
 router.get('/services/getservices',getServices);
+router.post("/category/delete",requireSignin,adminAccess,deleteServices);
 
 module.exports=router;

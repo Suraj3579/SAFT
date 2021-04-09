@@ -74,6 +74,21 @@ exports.getServices = (req, res, next) => {
   });
 };
 
-exports.deleteServices =(req,res,next) =>{
 
+exports.deleteServices = async (req, res) => {
+  const { ids } = req.body.payload;
+  const deletedServices = [];
+  for (let i = 0; i < ids.length; i++) {
+    const deleteService = await Category.findOneAndDelete({
+      _id: ids[i]._id,
+      createdBy: req.user._id,
+    });
+    deletedServices.push(deleteService);
+  }
+
+  if (deletedServices.length == ids.length) {
+    res.status(201).json({ message: "Categories removed" });
+  } else {
+    res.status(400).json({ message: "Something went wrong" });
+  }
 };
