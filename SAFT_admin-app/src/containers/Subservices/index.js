@@ -3,7 +3,7 @@ import Modal from '../../components/UI/Modal';
 import Layout from '../../components/Layout';
 import Input from '../../components/UI/Input';
 import { Container, Row, Col } from 'react-bootstrap';
-import linearCategories from '../../helpers/linearCategories';
+import {linearCategories, linearCategoriesParent} from '../../helpers/linearCategories';
 import { useSelector, useDispatch } from 'react-redux';
 import { createPage } from '../../actions';
 
@@ -16,38 +16,83 @@ const NewPage = (props) => {
 
     const [createModal, setCreateModal] = useState(false);
     const [title, setTitle] = useState('');
-    const category = useSelector(state => state.category);
     const [categories, setCategories] = useState([]);
-    const [categoryId, setCategoryId] = useState('');
-    const [desc, setDesc] = useState('');
+    const [parentCategories, setParentCategories] = useState([]);
+    const [childCategories,setChildCategories]=useState([]);
+    const [grandChildrenCateogories, setGrandChildrenCateogories]=useState([]);
+    const [parentCategoryId, setParentCategoryId] = useState('')
+    const [childCategoryId, setChildCategoryId] = useState('');
+    const [grandchildCategoryId, setGrandchildCategoryId] = useState('');
+
+    const [price, setPrice] = useState('');
     const [type, setType] = useState('');
     const [banners, setBanners] = useState([]);
     const [products, setProducts] = useState([]);
     const dispatch = useDispatch();
+    const category = useSelector(state => state.category);
     const page = useSelector(state => state.page);
 
 
     useEffect(() => {
         setCategories(linearCategories(category.categories));
+        setParentCategories(linearCategoriesParent(category.categories));
     }, [category]);
 
-    useEffect(() => {
-        console.log(page);
-        if(!page.loading){
-            setCreateModal(false);
-            setTitle('');
-            setCategoryId('');
-            setDesc('');
-            setProducts([]);
-            setBanners([]);
-        }
-    }, [page]);
 
-    const onCategoryChange = (e) => {
+    // useEffect(() => {
+    //     console.log(page);
+    //     if(!page.loading){
+    //         setCreateModal(false);
+    //         setTitle('');
+    //         setCategoryId('');
+    //         setDesc('');
+    //         setProducts([]);
+    //         setBanners([]);
+    //     }
+    // }, [page]);
+
+    const onCategoryChangeParent = (e) => {
         const category = categories.find(category => category.value == e.target.value);
-        setCategoryId(e.target.value);
-        setType(category.type);
+        setParentCategoryId(e.target.value);
+        console.log(categories);
+        let childCat=[];
+        for (let category of categories) {
+            if(category.parentId==e.target.value)
+            {
+                childCat.push(category);
+            }
+        }
+        console.log('childCat :>> ', childCat);
+        setChildCategories(childCat);
+        setGrandChildrenCateogories([]);
+        setChildCategoryId('');
+        // setType(category.type);
     }
+
+    const onCategoryChangeChild = (e) => {
+        const category = categories.find(category => category.value == e.target.value);
+        setChildCategoryId(e.target.value);
+        console.log(categories);
+        let grandChildCats=[];
+        for (let category of categories) {
+            if(category.parentId==e.target.value)
+            {
+                grandChildCats.push(category);
+            }
+        }
+        console.log('grandchildCat :>> ', grandChildCats);
+        setGrandChildrenCateogories(grandChildCats);
+        // setType(category.type);
+    }
+
+    const onCategoryChangeGrandChild = (e) => {
+        // console.log('e.target.value :>> ', e.target.value);
+        const category = categories.find(category => category.value == e.target.value);
+        setGrandchildCategoryId(e.target.value);
+        console.log(category);
+    }
+
+    
 
     const handleBannerImages = (e) => {
         console.log(e);
@@ -62,16 +107,18 @@ const NewPage = (props) => {
     const submitPageForm = (e) => {
         //e.target.preventDefault();
 
-        if(title === ""){
-            alert('Title is required');
+        if(price === ""){
+            alert('Price is required');
             setCreateModal(false);
             return;
         }
 
-        const form = new FormData();
+        const serviceItem={
+            parentId: childCategoryId,
+        }
         form.append('title', title);
-        form.append('description', desc);
-        form.append('category', categoryId);
+        // form.append('description', desc);
+        // form.append('category', categoryId);
         form.append('type', type);
         banners.forEach((banner, index) => {
             form.append('banners', banner);
@@ -96,45 +143,47 @@ const NewPage = (props) => {
                 <Container>
                     <Row>
                         <Col>
-                            {/* <select
-                                className="form-control"
-                                value={categoryId}
-                                onChange={onCategoryChange}
-                            >
-                                <option value="">select category</option>
-                                {
-                                    categories.map(cat =>
-                                        <option key={cat._id} value={cat._id}>{cat.name}</option>
-                                    )
-                                }
-                            </select> */}
                             <Input 
                                 type="select"
-                                value={categoryId}
-                                onChange={onCategoryChange}
-                                options={categories}
-                                placeholder={'Select Category'}
+                                value={parentCategoryId}
+                                onChange={onCategoryChangeParent}
+                                options={parentCategories}
+                                placeholder={'Select Top category'}
                             />
                         </Col>
                     </Row>
 
                     <Row>
                         <Col>
-                            <Input
-                                value={title}
-                                onChange={(e) => setTitle(e.target.value)}
-                                placeholder={'Page Title'}
-                                className=""
+                            <Input 
+                                type="select"
+                                value={childCategoryId}
+                                onChange={onCategoryChangeChild}
+                                options={childCategories}
+                                placeholder={'Select child category'}
                             />
                         </Col>
                     </Row>
 
                     <Row>
                         <Col>
+                            <Input 
+                                type="select"
+                                value={grandchildCategoryId}
+                                onChange={onCategoryChangeGrandChild}
+                                options={grandChildrenCateogories}
+                                placeholder={'Select sub services'}
+                            />
+                        </Col>
+                    </Row>
+
+
+                    <Row>
+                        <Col>
                             <Input
-                                value={desc}
-                                onChange={(e) => setDesc(e.target.value)}
-                                placeholder={'Page Desc'}
+                                value={price}
+                                onChange={(e) => setPrice(e.target.value)}
+                                placeholder={'Price'}
                                 className=""
                             />
                         </Col>
@@ -186,7 +235,6 @@ const NewPage = (props) => {
             </Modal>
         );
     }
-
 
     return (
         <Layout sidebar>

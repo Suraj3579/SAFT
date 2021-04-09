@@ -48,11 +48,11 @@ const AddCategoryModal = (props) => {
                     </select>
                 </Col>
             </Row>
-            {/* <Row>
+            <Row>
                 <Col>
                     <input type="file" name="categoryImage" onChange={handleCategoryImage} />
                 </Col>
-            </Row> */}
+            </Row>
 
 
         </Modal>

@@ -62,6 +62,10 @@ const Category = (props) => {
             name:categoryName, 
             parentId:parentCategoryId         
         };
+        if(categoryImage!='')
+        {
+            userObj.serviceItemsPictures=categoryImage;
+        }
         // form.append('name', categoryName);
         // form.append('parentId', parentCategoryId);
         // form.append('categoryImage', categoryImage);
@@ -105,6 +109,7 @@ const Category = (props) => {
 
     const handleCategoryImage = (e) => {
         setCategoryImage(e.target.files[0]);
+        console.log(e.target.files);
     }
 
     const updateCategory = () => {
