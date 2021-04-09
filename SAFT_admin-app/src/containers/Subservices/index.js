@@ -116,18 +116,18 @@ const NewPage = (props) => {
         const serviceItem={
             parentId: childCategoryId,
         }
-        form.append('title', title);
+        // form.append('title', title);
         // form.append('description', desc);
         // form.append('category', categoryId);
-        form.append('type', type);
-        banners.forEach((banner, index) => {
-            form.append('banners', banner);
-        });
-        products.forEach((product, index) => {
-            form.append('products', product);
-        });
+        // form.append('type', type);
+        // banners.forEach((banner, index) => {
+        //     form.append('banners', banner);
+        // });
+        // products.forEach((product, index) => {
+        //     form.append('products', product);
+        // });
 
-        dispatch(createPage(form));
+        // dispatch(createPage(form));
 
         
     }
