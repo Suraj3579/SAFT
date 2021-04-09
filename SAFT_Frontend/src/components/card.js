@@ -1,0 +1,154 @@
+import React from "react";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#ffa000",
+    },
+    secondary: {
+      main: "#ffa500",
+    },
+  },
+});
+
+const useStyles = makeStyles((theme) => ({
+  icon: {
+    marginRight: theme.spacing(2),
+  },
+  heroContent: {
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(8, 0, 6),
+  },
+  heroButtons: {
+    marginTop: theme.spacing(4),
+  },
+  cardGrid: {
+    paddingTop: theme.spacing(8),
+    paddingBottom: theme.spacing(8),
+  },
+  card: {
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    margin: "50px",
+  },
+  cardMedia: {
+    //margin: "20px",
+    paddingTop: "56.25%", // 16:9
+    //padding: "20px",
+  },
+  cardContent: {
+    flexGrow: 1,
+  },
+  footer: {
+    backgroundColor: "black",
+    padding: theme.spacing(6),
+  },
+  logoIcons: {
+    dislay: "flex",
+  },
+  iconlogo: {
+    height: "3vh",
+    width: "4vh",
+    marginRight: "3px",
+  },
+  star: {
+    marginBottom: "5px",
+  },
+}));
+
+function Cards(props) {
+  const classes = useStyles();
+
+  return (
+    <React.Fragment>
+      <ThemeProvider theme={theme}>
+        <Card className={classes.card}>
+          <CardMedia
+            className={classes.cardMedia}
+            image="https://source.unsplash.com/random"
+            title="Image title"
+          />
+          <CardContent className={classes.cardContent}>
+            <Typography gutterBottom variant="h5" component="h2">
+              {props.cards1}
+            </Typography>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                flexWrap: "wrap",
+              }}
+            >
+              {/* <StarRateIcon
+                          style={{ color: "green", marginLeft: "0px" }}
+                          edge="start"
+                        /> */}
+              <Typography variant="h6" style={{ color: "green" }}>
+                ★
+              </Typography>
+              <Typography
+                variant="subtitle1"
+                style={{ color: "green", marginRight: "10px" }}
+              >
+                4.45
+              </Typography>
+              <Typography variant="caption" style={{ color: "grey" }}>
+                7.4K Ratings
+              </Typography>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                flexWrap: "wrap",
+              }}
+            >
+              <Typography
+                variant="subtitle1"
+                gutterBottom="true"
+                style={{ color: "crimson" }}
+              >
+                ₹99
+              </Typography>
+              <Button
+                variant="contained"
+                size="small"
+                color="primary"
+                style={{ marginBottom: "10px", marginLeft: "auto" }}
+              >
+                ADD TO CART
+              </Button>
+            </div>
+            <hr
+              style={{
+                color: "grey",
+                backgroundColor: "grey",
+                height: 1,
+              }}
+            />
+            <Typography variation="caption">
+              This is the first line of the content.The second line would be
+              second line only.
+            </Typography>
+          </CardContent>
+          {/* <CardActions>
+                      <Button variant="contained" size="small" color="primary">
+                        Edit
+                      </Button>
+                    </CardActions> */}
+        </Card>
+      </ThemeProvider>
+    </React.Fragment>
+  );
+}
+
+export default Cards;
