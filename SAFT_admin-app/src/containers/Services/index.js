@@ -24,6 +24,7 @@ import 'react-checkbox-tree/lib/react-checkbox-tree.css';
 import UpdateCategoriesModal from './components/UpdateCategoriesModal';
 import AddCategoryModal from './components/AddCategoryModal';
 import './style.css';
+import { useHistory } from 'react-router';
 
 /**
 * @author
@@ -31,8 +32,8 @@ import './style.css';
 **/
 
 const Category = (props) => {
-
     const category = useSelector(state => state.category);
+    // const categories=useSelector(state=>state.categories);
     const [categoryName, setCategoryName] = useState('');
     const [parentCategoryId, setParentCategoryId] = useState('');
     const [categoryImage, setCategoryImage] = useState('');
@@ -44,30 +45,31 @@ const Category = (props) => {
     const [updateCategoryModal, setUpdateCategoryModal] = useState(false);
     const [deleteCategoryModal, setDeleteCategoryModal] = useState(false);
     const dispatch = useDispatch();
-
+    const history = useHistory();
     useEffect(() => {
-
-        if (!category.loading) {
-            setShow(false);
-        }
-
-    }, [category.loading]);
-
-
+        dispatch(getAllCategory());
+    }, []);
     const handleClose = () => {
 
-        const form = new FormData();
-
+        
         if (categoryName === "") {
             alert('Category name is required');
             setShow(false);
             return;
         }
-
-        form.append('name', categoryName);
-        form.append('parentId', parentCategoryId);
-        form.append('categoryImage', categoryImage);
-        dispatch(addCategory(form));
+        
+        const userObj = {
+            name:categoryName, 
+            parentId:parentCategoryId         
+        };
+        if(categoryImage!='')
+        {
+            userObj.serviceItemsPictures=categoryImage;
+        }
+        // form.append('name', categoryName);
+        // form.append('parentId', parentCategoryId);
+        // form.append('categoryImage', categoryImage);
+        dispatch(addCategory(userObj));
         setCategoryName('');
         setParentCategoryId('');
         setShow(false);
@@ -75,7 +77,7 @@ const Category = (props) => {
     const handleShow = () => setShow(true);
 
     const renderCategories = (categories) => {
-        let myCategories = [];
+        let myCategories = [] ;
         for (let category of categories) {
             myCategories.push(
                 {
@@ -88,17 +90,17 @@ const Category = (props) => {
         return myCategories;
     }
 
-    const createCategoryList = (categories, options = []) => {
+    const createservicesList = (categories, options = []) => {
 
         for (let category of categories) {
             options.push({
                 value: category._id,
                 name: category.name,
                 parentId: category.parentId,
-                type: category.type
+                // type: category.type
             });
             if (category.children.length > 0) {
-                createCategoryList(category.children, options)
+                createservicesList(category.children, options)
             }
         }
 
@@ -107,6 +109,7 @@ const Category = (props) => {
 
     const handleCategoryImage = (e) => {
         setCategoryImage(e.target.files[0]);
+        console.log(e.target.files);
     }
 
     const updateCategory = () => {
@@ -115,7 +118,7 @@ const Category = (props) => {
     }
 
     const updateCheckedAndExpandedCategories = () => {
-        const categories = createCategoryList(category.categories);
+        const categories = createservicesList(category.categories);
         const checkedArray = [];
         const expandedArray = [];
         checked.length > 0 && checked.forEach((categoryId, index) => {
@@ -146,12 +149,12 @@ const Category = (props) => {
     const updateCategoriesForm = () => {
         const form = new FormData();
 
-        expandedArray.forEach((item, index) => {
-            form.append('_id', item.value);
-            form.append('name', item.name);
-            form.append('parentId', item.parentId ? item.parentId : "");
-            form.append('type', item.type);
-        });
+        // expandedArray.forEach((item, index) => {
+        //     form.append('_id', item.value);
+        //     form.append('name', item.name);
+        //     form.append('parentId', item.parentId ? item.parentId : "");
+        //     form.append('type', item.type);
+        // });
         checkedArray.forEach((item, index) => {
             form.append('_id', item.value);
             form.append('name', item.name);
@@ -164,6 +167,8 @@ const Category = (props) => {
 
     const deleteCategory = () => {
         updateCheckedAndExpandedCategories();
+        console.log("expandedArray",expandedArray);
+        console.log("checkedArray",checkedArray);
         setDeleteCategoryModal(true);
     }
 
@@ -198,7 +203,7 @@ const Category = (props) => {
                         label: 'No',
                         color: 'primary',
                         onClick: () => {
-                            alert('no');
+                            setDeleteCategoryModal(false);
                         }
                     },
                     {
@@ -219,15 +224,14 @@ const Category = (props) => {
         );
     }
 
-    const categoryList = createCategoryList(category.categories);
-
+    const servicesList = createservicesList(category.categories);
     return (
         <Layout sidebar>
             <Container>
                 <Row>
                     <Col md={12}>
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <h3>Category</h3>
+                            <h3>Services</h3>
                             <div className="actionBtnContainer">
                                 <span>Actions: </span>
                                 <button onClick={handleShow}><IoIosAdd /> <span>Add</span></button>
@@ -243,7 +247,7 @@ const Category = (props) => {
                     <Col md={12}>
                         <CheckboxTree
                             nodes={renderCategories(category.categories)}
-                            checked={checked}
+                            checked={checked} 
                             expanded={expanded}
                             onCheck={checked => setChecked(checked)}
                             onExpand={expanded => setExpanded(expanded)}
@@ -260,14 +264,14 @@ const Category = (props) => {
             </Container>
             <AddCategoryModal
                 show={show}
-                handleClose={() => setShow(false)}
+                handleClose={() =>setShow(false)}
                 onSubmit={handleClose}
                 modalTitle={'Add New Category'}
                 categoryName={categoryName}
                 setCategoryName={setCategoryName}
                 parentCategoryId={parentCategoryId}
                 setParentCategoryId={setParentCategoryId}
-                categoryList={categoryList}
+                servicesList={servicesList}
                 handleCategoryImage={handleCategoryImage}
             />
             <UpdateCategoriesModal
@@ -279,7 +283,7 @@ const Category = (props) => {
                 expandedArray={expandedArray}
                 checkedArray={checkedArray}
                 handleCategoryInput={handleCategoryInput}
-                categoryList={categoryList}
+                servicesList={servicesList}
             />
             {/* {renderAddCategoryModal()} */}
             {renderDeleteCategoryModal()}

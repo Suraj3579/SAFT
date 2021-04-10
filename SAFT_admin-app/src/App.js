@@ -9,8 +9,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { isUserLoggedIn, getInitialData } from './actions';
 import Products from './containers/Products';
 import Orders from './containers/Orders';
-import Category from './containers/Category';
-import NewPage from './containers/NewPage';
+import Services from './containers/Services';
+import Subservices from './containers/Subservices';
 
 
 
@@ -36,8 +36,8 @@ function App() {
     <div className="App">
       <Switch>
         <PrivateRoute path="/" exact component={Home} />
-        <PrivateRoute path="/page" component={NewPage} />
-        <PrivateRoute path="/category" component={Category} />
+        <PrivateRoute path="/subservices" component={Subservices} />
+        <PrivateRoute path="/category" component={Services} />
         <PrivateRoute path="/products" component={Products} />
         <PrivateRoute path="/orders" component={Orders} />
         

@@ -1,11 +1,11 @@
-const linearCategories = (categories, options = []) => {
+export const linearCategories = (categories, options = []) => {
 
     for (let category of categories) {
         options.push({ 
             value: category._id, 
             name: category.name, 
             parentId: category.parentId,
-            type: category.type
+            // type: category.type
         });
         if (category.children.length > 0) {
             linearCategories(category.children, options)
@@ -15,4 +15,17 @@ const linearCategories = (categories, options = []) => {
     return options;
 }
 
-export default linearCategories;
+export const linearCategoriesParent = (categories, options = []) => {
+
+    for (let category of categories) {
+        options.push({ 
+            value: category._id, 
+            name: category.name, 
+            parentId: category.parentId,
+            // type: category.type
+        });
+    }
+
+    return options;
+}
+// export default linearCategories;

@@ -56,7 +56,7 @@ const Signup = (props) => {
     <Layout>
       <Container>
         {user.message}
-        <Row style={{ marginTop: "50px" }}>
+        <Row style={{ marginTop: "100px" }}>
           <Col md={{ span: 6, offset: 3 }}>
             <Form onSubmit={userSignup}>
               <Row>

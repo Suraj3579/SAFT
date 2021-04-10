@@ -97,20 +97,20 @@ exports.createserviceItems = (req, res) => {
 //   }
 // };
 
-// // new update
-// exports.deleteProductById = (req, res) => {
-//   const { productId } = req.body.payload;
-//   if (productId) {
-//     Product.deleteOne({ _id: productId }).exec((error, result) => {
-//       if (error) return res.status(400).json({ error });
-//       if (result) {
-//         res.status(202).json({ result });
-//       }
-//     });
-//   } else {
-//     res.status(400).json({ error: "Params required" });
-//   }
-// };
+
+exports.deleteserviceItemById = (req, res) => {
+  const { serviceItemId } = req.body.payload;
+  if (serviceItemtId) {
+    ServiceItems.deleteOne({ _id: serviceItemId }).exec((error, result) => {
+      if (error) return res.status(400).json({ error });
+      if (result) {
+        res.status(202).json({ result });
+      }
+    });
+  } else {
+    res.status(400).json({ error: "Params required" });
+  }
+};
 
 exports.getserviceItems = async (req, res) => {
   const items = await ServiceItems.find({ createdBy: req.user._id })

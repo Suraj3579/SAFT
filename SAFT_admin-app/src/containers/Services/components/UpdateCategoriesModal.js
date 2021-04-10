@@ -14,7 +14,7 @@ const UpdateCategoriesModal = (props) => {
         expandedArray,
         checkedArray,
         handleCategoryInput,
-        categoryList,
+        servicesList,
         onSubmit
     } = props;
 
@@ -51,7 +51,7 @@ const UpdateCategoriesModal = (props) => {
                                 onChange={(e) => handleCategoryInput('parentId', e.target.value, index, 'expanded')}>
                                 <option>select category</option>
                                 {
-                                    categoryList.map(option =>
+                                    servicesList.map(option =>
                                         <option key={option.value} value={option.value}>{option.name}</option>
                                     )
                                 }
@@ -91,7 +91,7 @@ const UpdateCategoriesModal = (props) => {
                                 onChange={(e) => handleCategoryInput('parentId', e.target.value, index, 'checked')}>
                                 <option>select category</option>
                                 {
-                                    categoryList.map(option =>
+                                    servicesList.map(option =>
                                         <option key={option.value} value={option.value}>{option.name}</option>
                                     )
                                 }
