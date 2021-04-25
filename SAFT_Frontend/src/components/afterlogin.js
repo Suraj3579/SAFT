@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
   },
   cardMedia: {
-    paddingTop: "56.25%", // 16:9
+    paddingTop: "80%", // 16:9
     width: "30",
   },
   cardContent: {
@@ -156,7 +156,7 @@ const cards = [
     id: 10,
     serviceName: "Salon",
     image:
-      "https://i.pinimg.com/originals/6d/24/77/6d24771302dd67e5735d09de7b2a9e49.jpg",
+      "https://media.istockphoto.com/vectors/-vector-id1220134013?k=6&m=1220134013&s=612x612&w=0&h=2dDMsVq-X1ALxsnV1TwA8PVN7af7uvCB-Oia45-NZ-Y=",
   },
 ];
 
@@ -219,7 +219,7 @@ export default function AfterLogin() {
                   md={2}
                   className={classes.mycard}
                 >
-                  <Card className={classes.card} elevation={0} square="true">
+                  <Card className={classes.card} elevation={0} square="false">
                     <CardActionArea href="/services">
                       <CardMedia
                         className={classes.cardMedia}

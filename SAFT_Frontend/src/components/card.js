@@ -124,8 +124,9 @@ function Cards(props) {
                 size="small"
                 color="primary"
                 style={{ marginBottom: "10px", marginLeft: "auto" }}
+                href="/checkout"
               >
-                ADD TO CART
+                Grab It
               </Button>
             </div>
             <hr

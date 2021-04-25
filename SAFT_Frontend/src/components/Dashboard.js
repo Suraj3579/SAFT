@@ -23,6 +23,7 @@ import Chart from "./Chart";
 import Deposits from "./Deposits";
 import Orders from "./Orders";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
+import Profile from "./profile";
 
 const theme = createMuiTheme({
   palette: {
@@ -203,6 +204,15 @@ export default function Dashboard() {
               <Grid item xs={12}>
                 <Paper className={classes.paper}>
                   <Orders />
+                </Paper>
+              </Grid>
+            </Grid>
+          </Container>
+          <Container maxWidth="xs" className={classes.container}>
+            <Grid container spacing={3}>
+              <Grid item xs={12}>
+                <Paper style={{ padding: theme.spacing(2) }}>
+                  <Profile />
                 </Paper>
               </Grid>
             </Grid>
