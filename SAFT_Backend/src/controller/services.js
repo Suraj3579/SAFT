@@ -37,7 +37,7 @@ exports.createService = (req, res) => {
   }
   const servicesObj = new Service({
     name: req.body.name,
-    slug: slugify(req.body.name),
+    slug: `$(slugify(req.body.name))-$(shortid.generate())`,
     servicePictures,
   });
   if (req.body.parentId) {
@@ -79,7 +79,7 @@ exports.deleteServices = async (req, res) => {
   const { ids } = req.body.payload;
   const deletedServices = [];
   for (let i = 0; i < ids.length; i++) {
-    const deleteService = await Category.findOneAndDelete({
+    const deleteService = await Service.findOneAndDelete({
       _id: ids[i]._id,
       createdBy: req.user._id,
     });
@@ -87,7 +87,7 @@ exports.deleteServices = async (req, res) => {
   }
 
   if (deletedServices.length == ids.length) {
-    res.status(201).json({ message: "Categories removed" });
+    res.status(201).json({ message: "Services removed" });
   } else {
     res.status(400).json({ message: "Something went wrong" });
   }
