@@ -10,6 +10,7 @@ import Products from "./components/products";
 import Dashboard from "./components/Dashboard";
 import Services from "./components/services";
 import SimpleSlider from "./components/slicker";
+import Checkout from "./components/checkout";
 
 const App = () => {
   return (
@@ -41,6 +42,9 @@ const App = () => {
           </Route>
           <Route path="/slicker">
             <SimpleSlider />
+          </Route>
+          <Route path="/checkout">
+            <Checkout />
           </Route>
           <Route path="/">
             <Home />

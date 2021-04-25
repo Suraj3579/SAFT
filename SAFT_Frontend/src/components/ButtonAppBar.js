@@ -7,6 +7,9 @@ import { Link } from "@material-ui/core";
 import logo from "../images/logo.jpeg";
 import cart from "../images/cart-plus-solid.svg";
 import user from "../images/user-circle-solid.svg";
+import { IoIosArrowDown } from "react-icons/io";
+import DropdownMenu from "./dropdowncomponent/dropdownmenu";
+import "./Buttonstyle.css";
 // import { createMuiTheme } from "@material-ui/core/styles";
 
 // const theme = createMuiTheme({
@@ -77,6 +80,25 @@ export default function ButtonAppBar(props) {
             <Link href="/" className={classes.title}>
               <img src={logo} className={classes.logo} alt="" />
             </Link>
+            <div>
+              <DropdownMenu
+                menu={
+                  <a className="more">
+                    <span>More</span>
+                    <IoIosArrowDown />
+                  </a>
+                }
+                menus={[
+                  {
+                    label: "Want to become a SAFT professional?",
+                    href: "",
+                    icon: null,
+                  },
+                  { label: "24x7 Customer Care", href: "", icon: null },
+                  { label: "Advertise on SAFT", href: "", icon: null },
+                ]}
+              />
+            </div>
           </Toolbar>
         </AppBar>
       </div>
@@ -168,7 +190,7 @@ export default function ButtonAppBar(props) {
                 <img src={cart} className={classes.cart} alt="" width="30" />
               </Link>
             </div>
-            <Link href="/profile">
+            <Link href="/dashboard">
               <img src={user} className={classes.user} alt="" width="30" />
             </Link>
           </Toolbar>

@@ -25,6 +25,7 @@ import star from "../images/star-solid.svg";
 import ruppee from "../images/rupee-sign-solid.svg";
 import Cards from "./card";
 import Slider from "react-slick";
+import GeoLocation from "./GeoLocation";
 
 const theme = createMuiTheme({
   palette: {
@@ -114,6 +115,7 @@ export default function Services() {
               >
                 Services At FingerTips
               </Typography>
+              <GeoLocation />
               <Typography
                 variant="h5"
                 align="center"
