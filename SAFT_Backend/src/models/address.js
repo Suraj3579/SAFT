@@ -2,7 +2,14 @@ const mongoose = require("mongoose");
 
 // C
 const addressSchema = new mongoose.Schema({
-  name: {
+  firstname: {
+    type: String,
+    required: true,
+    trim: true,
+    min: 3,
+    max: 50,
+  },
+  lastname: {
     type: String,
     required: true,
     trim: true,
@@ -19,16 +26,15 @@ const addressSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
-  locality: {
+  address1: {
     type: String,
     required: true,
     trim: true,
     min: 10,
     max: 100,
   },
-  address: {
+  address2: {
     type: String,
-    required: true,
     trim: true,
     min: 10,
     max: 100,
@@ -41,12 +47,14 @@ const addressSchema = new mongoose.Schema({
   state: {
     type: String,
     required: true,
+  },
+  country: {
+    type: String,
     required: true,
   },
-  landmark: {
+  pincode: {
     type: String,
-    min: 10,
-    max: 100,
+    required: true,
   },
   alternatePhone: {
     type: String,
