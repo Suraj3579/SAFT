@@ -1,11 +1,11 @@
 import axios from "../helpers/axios";
 import { pageConstants } from "./constants";
 
-export const createPage = (form) => {
+export const createServiceItem = (form) => {
     return async dispatch => {
         dispatch({ type: pageConstants.CREATE_PAGE_REQUEST });
         try{
-            const res = await axios.post('/page/create', form);
+            const res = await axios.post('/serviceItems/create', form);
             if(res.status === 201){
                 dispatch({
                     type: pageConstants.CREATE_PAGE_SUCCESS,

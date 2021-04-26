@@ -58,18 +58,11 @@ const Category = (props) => {
             return;
         }
         
-        const userObj = {
-            name:categoryName, 
-            parentId:parentCategoryId         
-        };
-        if(categoryImage!='')
-        {
-            userObj.serviceItemsPictures=categoryImage;
-        }
         var form=new FormData();
         form.append('name', categoryName);
         form.append('parentId', parentCategoryId);
         form.append('servicePictures', categoryImage);
+        
         console.log("form",form);
         dispatch(addCategory(form));
         setCategoryName('');
