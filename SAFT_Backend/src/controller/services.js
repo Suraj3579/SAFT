@@ -37,7 +37,7 @@ exports.createService = (req, res) => {
   }
   const servicesObj = new Service({
     name: req.body.name,
-    slug: `$(slugify(req.body.name))-$(shortid.generate())`,
+    slug: `${slugify(req.body.name)}-${shortid.generate()}`,
     servicePictures,
   });
   if (req.body.parentId) {
@@ -59,6 +59,7 @@ exports.createService = (req, res) => {
 };
 
 exports.getServices = (req, res, next) => {
+  console.log("getServices");
   Service.find({}).exec((error, services) => {
     if (error) {
       return res.status(400).json({
@@ -77,11 +78,12 @@ exports.getServices = (req, res, next) => {
 
 exports.deleteServices = async (req, res) => {
   const { ids } = req.body.payload;
+  console.log('ids :>> ', ids);
   const deletedServices = [];
   for (let i = 0; i < ids.length; i++) {
     const deleteService = await Service.findOneAndDelete({
       _id: ids[i]._id,
-      createdBy: req.user._id,
+      // createdBy: req.user._id,
     });
     deletedServices.push(deleteService);
   }

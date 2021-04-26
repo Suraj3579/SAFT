@@ -2,11 +2,12 @@ const ServiceItems = require("../models/serviceItems");
 const shortid = require("shortid");
 const slugify = require("slugify");
 const Service = require("../models/services");
-const serviceItems = require("../models/serviceItems");
+// const serviceItems = require("../models/serviceItems");
 
 exports.createserviceItems = (req, res) => {
   //res.status(200).json( { file: req.files, body: req.body } );
-
+  console.log("Create service items");
+  console.log(req);
   const { name, price, service, createdBy } = req.body;
   let serviceItemsPictures = [];
 
@@ -33,11 +34,11 @@ exports.createserviceItems = (req, res) => {
   });
 };
 
-exports.getserviceItemsbyservice = (req, res) => {
-  console.log("lol");
-  const { slug } = req.params;
-  console.log(slug);
-  Service.findOne({ slug: slug })
+exports.getserviceItemsbyserviceId = (req, res) => {
+  // console.log("lol");
+  const { service } = req.params;
+  console.log(service);
+  Service.findOne({ _id: service })
     .select("_id")
     .exec((error, service) => {
       if (error) {
@@ -45,7 +46,7 @@ exports.getserviceItemsbyservice = (req, res) => {
       }
 
       if (service) {
-        serviceItems.find({ service: service._id }).exec((error, serviceitems) => {
+        ServiceItems.find({ service: service._id }).exec((error, serviceitems) => {
           if (error) 
           {
             return res.status(400).json({ error });
@@ -95,7 +96,7 @@ exports.deleteserviceItemById = (req, res) => {
 };
 
 exports.getserviceItems = async (req, res) => {
-  const items = await ServiceItems.find({ createdBy: req.user._id })
+  const items = await ServiceItems.find({  })
     .select("_id name price slug serviceItemsPictures service")
     .populate({ path: "service", select: "_id name" })
     .exec();

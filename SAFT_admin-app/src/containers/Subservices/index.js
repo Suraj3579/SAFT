@@ -119,7 +119,7 @@ const NewPage = (props) => {
         var form=new FormData();
         form.append('name', grandchildName);
         form.append('price', price);
-        form.append('parentId',childCategoryId);
+        form.append('service',childCategoryId);
         form.append('serviceItemsPictures',grandchildImage);
 
         dispatch(createServiceItem(form));
@@ -234,9 +234,7 @@ const NewPage = (props) => {
     return (
         <Layout sidebar>
             {
-                page.loading ? 
-                <p>Creating Page...please wait</p>
-                :
+
                 <>
                     {renderCreatePageModal()}
                     <button onClick={() => {

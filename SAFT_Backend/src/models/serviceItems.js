@@ -20,7 +20,7 @@ const serviceItemsSchema = new mongoose.Schema({
     serviceItemsPictures: [
         { img: { type: String } }
     ],
-    service: { type: mongoose.Schema.Types.ObjectId, ref: 'Service', required: true },
+    service: { type: mongoose.Schema.Types.ObjectId, ref: 'Services', required: true },
     createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     updatedAt: Date,
 
