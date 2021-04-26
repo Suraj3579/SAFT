@@ -7,14 +7,15 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-
+import { IoIosCart, IoIosThunderstorm } from "react-icons/io";
+import { Thunder } from "react-icons/ai";
 const theme = createMuiTheme({
   palette: {
     primary: {
       main: "#ffa000",
     },
     secondary: {
-      main: "#ffa500",
+      main: "#dc143c",
     },
   },
 });
@@ -104,6 +105,19 @@ function Cards(props) {
               <Typography variant="caption" style={{ color: "grey" }}>
                 7.4K Ratings
               </Typography>
+              <Button
+                variant="contained"
+                size="small"
+                color="primary"
+                style={{
+                  marginBottom: "10px",
+                  marginLeft: "auto",
+                  color: "white",
+                }}
+                href="/checkout"
+              >
+                <span>CHECKOUT</span>
+              </Button>
             </div>
             <div
               style={{
@@ -122,11 +136,16 @@ function Cards(props) {
               <Button
                 variant="contained"
                 size="small"
-                color="primary"
-                style={{ marginBottom: "10px", marginLeft: "auto" }}
-                href="/checkout"
+                color="secondary"
+                style={{
+                  marginBottom: "10px",
+                  marginLeft: "auto",
+                  color: "white",
+                }}
+                href="/cart"
               >
-                Grab It
+                <IoIosCart />
+                <span style={{ marginLeft: "10px" }}>ADD TO CART</span>
               </Button>
             </div>
             <hr

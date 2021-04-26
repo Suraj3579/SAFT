@@ -31,6 +31,8 @@ const adminRoutes = require('./routes/admin/auth');
 const servicesRoutes = require('./routes/services');
 const serviceItemsRoutes = require('./routes/serviceItems');
 const cartRoutes = require('./routes/cart');
+const addressRoutes = require("./routes/address");
+const orderRoutes = require("./routes/order");
 
 app.use(cors());
 app.use(express.json());
@@ -40,6 +42,8 @@ app.use('/api', adminRoutes);
 app.use('/api', servicesRoutes);
 app.use('/api', serviceItemsRoutes);
 app.use('/api', cartRoutes);
+app.use('/api', orderRoutes);
+app.use('/api', addressRoutes);
 
 app.get('/',(req,res,next) => {
     res.status(200).json({

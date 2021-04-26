@@ -83,7 +83,7 @@ const useStyles = makeStyles((theme) => ({
 
 const cards = [1, 2, 3, 4, 5, 6];
 
-export default function Services() {
+export default function Services(props) {
   const classes = useStyles();
 
   const settings = {
@@ -113,7 +113,7 @@ export default function Services() {
                 color="textPrimary"
                 gutterBottom
               >
-                Services At FingerTips
+                Services at your Finger Tips
               </Typography>
               <GeoLocation />
               <Typography
