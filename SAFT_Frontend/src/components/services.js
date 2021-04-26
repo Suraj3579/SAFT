@@ -114,6 +114,7 @@ export default function Services(props) {
                 gutterBottom
               >
                 Services at your Finger Tips
+                {props.match.params.serviceId}
               </Typography>
               <GeoLocation />
               <Typography

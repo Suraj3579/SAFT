@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import CameraIcon from "@material-ui/icons/PhotoCamera";
@@ -25,6 +25,7 @@ import YouTubeIcon from "@material-ui/icons/YouTube";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import cleaningImage from "../images/broom-solid.svg";
 import { useHistory } from "react-router";
+var axios = require(`axios`);
 
 const theme = createMuiTheme({
   palette: {
@@ -164,6 +165,15 @@ export default function AfterLogin() {
   const classes = useStyles();
   const history = useHistory();
   const { useremail, userfullname } = history.location.state;
+  const [allServicesArray, setallServicesArray] = useState([]);
+
+  useEffect(() => {
+    console.log("useffect");
+    axios.get("http://localhost:2000/api/services/getservices").then((res) => {
+      setallServicesArray(res.data.servicesList);
+      console.log('res.data :>> ', res.data.servicesList);
+    });
+  }, []);
   return (
     <React.Fragment>
       <ThemeProvider theme={theme}>
@@ -210,20 +220,20 @@ export default function AfterLogin() {
           <Container className={classes.cardGrid} maxWidth="md">
             {/* End hero unit */}
             <Grid container spacing={1} className={classes.root}>
-              {cards.map((card) => (
+              {allServicesArray.map((card) => (
                 <Grid
                   item
-                  key={card.id}
+                  key={card._id}
                   xs={12}
                   sm={6}
                   md={2}
                   className={classes.mycard}
                 >
                   <Card className={classes.card} elevation={0} square="false">
-                    <CardActionArea href="services/2">
+                    <CardActionArea href={`services/${card._id}`}>
                       <CardMedia
                         className={classes.cardMedia}
-                        image={card.image}
+                        image={cards[0].image}
                         title="Image title"
                       />
                       <CardContent className={classes.cardContent}>
@@ -233,7 +243,7 @@ export default function AfterLogin() {
                           component="h2"
                           align="center"
                         >
-                          {card.serviceName}
+                          {card.name}
                         </Typography>
                         {/* <Typography>
                         This is a media card. You can use this section to

@@ -94,3 +94,38 @@ exports.deleteServices = async (req, res) => {
     res.status(400).json({ message: "Something went wrong" });
   }
 };
+
+
+exports.getservicesbyserviceId = (req, res) => {
+  console.log("getservicesbyserviceId");
+  const { parentId } = req.params;
+  console.log(parentId);
+  Service.find({ parentId: parentId })
+    // .select("")
+    .exec((error, service) => {
+      if (error) {
+        return res.status(400).json({ error });
+      }
+
+      if (service) {
+        console.log("service: ",service);
+        return res.status(200).json({service});
+        // Service.find({ service: service._id }).exec((error, serviceChildren) => {
+        //   if (error) 
+        //   {
+        //     return res.status(400).json({ error });
+        //   }
+        //   if (serviceChildren.length > 0) 
+        //     {
+        //       res.status(200).json({
+        //         serviceChildren,
+        //   });
+        //   } 
+        //   else
+        //   {
+        //     res.status(200).json({ serviceChildren });
+        //   }
+        // });
+      }
+    });
+};
