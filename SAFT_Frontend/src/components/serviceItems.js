@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+//serviceItems not being retrieved, should be able to delete serviceItems.
+import React, { Component, useEffect, useState } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import CameraIcon from "@material-ui/icons/PhotoCamera";
@@ -26,7 +27,8 @@ import ruppee from "../images/rupee-sign-solid.svg";
 import Cards from "./card";
 import Slider from "react-slick";
 import GeoLocation from "./GeoLocation";
-
+import Subservices from "./subservices";
+const axios = require(`axios`);
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -97,6 +99,15 @@ export default function Services(props) {
     focusOnSelect: true,
   };
 
+  const [subServices, setSubServices] = useState([])
+  useEffect(() => {
+    console.log("useffect");
+    axios.get(`http://localhost:2000/api/serviceItems/${props.match.params.serviceId}`).then((res) => {
+      setSubServices(res.data.serviceitems);
+      console.log('res.data :>> ', res.data);
+    });
+  }, []);
+
   return (
     <React.Fragment>
       <ThemeProvider theme={theme}>
@@ -114,7 +125,7 @@ export default function Services(props) {
                 gutterBottom
               >
                 Services at your Finger Tips
-                {props.match.params.serviceId}
+                {/* {props.match.params.serviceId} */}
               </Typography>
               <GeoLocation />
               <Typography
@@ -134,9 +145,11 @@ export default function Services(props) {
             Service Category
           </Typography>
           <Slider {...settings} style={{ margin: "20px" }}>
-            {cards.map((card) => (
-              <div key={card} style={{ padding: "20px" }}>
-                <Cards cards1={card} />
+            {subServices.map((card) => (
+              <div key={card._id} style={{ padding: "20px" }}>
+                <Cards cards1={card.name}
+                      image={`http://localhost:2000/public/${card.servicePictures[0].img}`}
+                      />
               </div>
             ))}
           </Slider>
@@ -149,7 +162,7 @@ export default function Services(props) {
               marginRight: "50px",
             }}
           />
-          <Typography
+          {/* <Typography
             variant="h4"
             style={{ marginLeft: "50px", marginTop: "20px" }}
           >
@@ -161,7 +174,7 @@ export default function Services(props) {
                 <Cards cards1={card} />
               </div>
             ))}
-          </Slider>
+          </Slider> */}
         </main>
         {/* Footer */}
         <footer className={classes.footer}>

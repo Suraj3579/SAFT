@@ -18,7 +18,7 @@ const upload = multer({ storage });
 
 router.post('/services/create',requireSignin,adminAccess,upload.array("servicePictures"),createService);
 router.get('/services/getservices',getServices);
-router.get('/sevices/:parentId',getservicesbyserviceId);
+router.get('/services/:parentId',getservicesbyserviceId);
 router.post("/services/delete",requireSignin,adminAccess,deleteServices);
 
 module.exports=router;

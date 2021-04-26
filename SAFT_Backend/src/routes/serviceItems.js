@@ -16,8 +16,8 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 router.post('/serviceItems/create',requireSignin,adminAccess,upload.array("serviceItemsPictures"),createserviceItems);
-router.get('/seviceItems/getserviceItems',getserviceItems);
-router.get('/seviceItems/:service',getserviceItemsbyserviceId);
-router.delete('/seviceItems/deleteserviceItembyId',requireSignin,adminAccess,deleteserviceItemById);
+router.get('/serviceItems/getserviceItems',getserviceItems);
+router.get('/serviceItems/:service',getserviceItemsbyserviceId);
+router.delete('/serviceItems/deleteserviceItembyId',requireSignin,adminAccess,deleteserviceItemById);
 
 module.exports=router;

@@ -29,10 +29,11 @@ function createservices(services, parentId = null) {
 
 exports.createService = (req, res) => {
   let servicePictures = [];
-
   if (req.files.length > 0) {
+    console.log('req.files.length :>> ', req.files);
     servicePictures = req.files.map((file) => {
-      return { img: file.location };
+      console.log(file.filename);
+      return { img: file.filename };
     });
   }
   const servicesObj = new Service({

@@ -13,7 +13,7 @@ exports.createserviceItems = (req, res) => {
 
   if (req.files.length > 0) {
     serviceItemsPictures = req.files.map((file) => {
-      return { img: file.location };
+      return { img: file.filename };
     });
   }
 

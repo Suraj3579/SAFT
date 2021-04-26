@@ -161,17 +161,17 @@ const cards = [
   },
 ];
 
-export default function AfterLogin() {
+export default function Subservices(props) {
   const classes = useStyles();
   const history = useHistory();
-  const { useremail, userfullname } = history.location.state;
-  const [allServicesArray, setallServicesArray] = useState([]);
+//   const { useremail, userfullname } = history.location.state;
+  const [allSubservicesArray, setallSubservicesArray] = useState([]);
 
   useEffect(() => {
     console.log("useffect");
-    axios.get("http://localhost:2000/api/services/getservices").then((res) => {
-      setallServicesArray(res.data.servicesList);
-      console.log('res.data :>> ', res.data.servicesList);
+    axios.get(`http://localhost:2000/api/services/${props.match.params.serviceId}`).then((res) => {
+      setallSubservicesArray(res.data.service);
+      console.log('res.data :>> ', res.data);
     });
   }, []);
   return (
@@ -183,7 +183,7 @@ export default function AfterLogin() {
           {/* Hero unit */}
           <div className={classes.heroContent}>
             <Container maxWidth="me">
-              <Typography align="center">Welcome {userfullname}</Typography>
+              <Typography align="center">Welcome</Typography>
               <Typography
                 component="h1"
                 variant="h2"
@@ -191,7 +191,7 @@ export default function AfterLogin() {
                 color="textPrimary"
                 gutterBottom
               >
-                Services At FingerTips
+                Services At FingerTips{props.match.params.serviceId}
               </Typography>
               <Typography
                 variant="h5"
@@ -220,7 +220,7 @@ export default function AfterLogin() {
           <Container className={classes.cardGrid} maxWidth="md">
             {/* End hero unit */}
             <Grid container spacing={1} className={classes.root}>
-              {allServicesArray.map((card) => (
+              {allSubservicesArray.map((card) => (
                 <Grid
                   item
                   key={card._id}
@@ -230,7 +230,7 @@ export default function AfterLogin() {
                   className={classes.mycard}
                 >
                   <Card className={classes.card} elevation={0} square="false">
-                    <CardActionArea href={`services/${card._id}`}>
+                    <CardActionArea href={`serviceItems/${card._id}`}>
                       <CardMedia
                         className={classes.cardMedia}
                         image={`http://localhost:2000/public/${card.servicePictures[0].img}`}

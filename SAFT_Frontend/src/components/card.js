@@ -75,7 +75,7 @@ function Cards(props) {
         <Card className={classes.card}>
           <CardMedia
             className={classes.cardMedia}
-            image="https://source.unsplash.com/random"
+            image={props.image}
             title="Image title"
           />
           <CardContent className={classes.cardContent}>
