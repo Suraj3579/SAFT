@@ -10,7 +10,7 @@ import Products from "./components/products";
 import Dashboard from "./components/Dashboard";
 import Services from "./components/services";
 import SimpleSlider from "./components/slicker";
-import Checkout from "./components/checkout";
+import Checkout from "./components/checkoutcomponent/Checkout";
 
 const App = () => {
   return (
@@ -31,15 +31,16 @@ const App = () => {
           <Route path="/after">
             <AfterLogin />
           </Route>
+          <Route path="/cart">
+            <Checkout />
+          </Route>
           <Route path="/products">
             <Products />
           </Route>
           <Route path="/dashboard">
             <Dashboard />
           </Route>
-          <Route path="/services">
-            <Services />
-          </Route>
+          <Route exact path="/services/:serviceId" component={Services} />
           <Route path="/slicker">
             <SimpleSlider />
           </Route>
