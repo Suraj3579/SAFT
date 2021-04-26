@@ -33,6 +33,8 @@ const serviceItemsRoutes = require('./routes/serviceItems');
 const cartRoutes = require('./routes/cart');
 const addressRoutes = require("./routes/address");
 const orderRoutes = require("./routes/order");
+const profileRoutes = require("./routes/profile");
+const adminorderRoutes = require("./routes/admin/order");
 
 app.use(cors());
 app.use(express.json());
@@ -44,6 +46,8 @@ app.use('/api', serviceItemsRoutes);
 app.use('/api', cartRoutes);
 app.use('/api', orderRoutes);
 app.use('/api', addressRoutes);
+app.use('/api', profileRoutes);
+app.use('/api', adminorderRoutes);
 
 app.get('/',(req,res,next) => {
     res.status(200).json({
