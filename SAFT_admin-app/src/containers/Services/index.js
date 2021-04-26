@@ -51,7 +51,7 @@ const Category = (props) => {
     }, []);
     const handleClose = () => {
 
-        
+
         if (categoryName === "") {
             alert('Category name is required');
             setShow(false);
@@ -66,10 +66,12 @@ const Category = (props) => {
         {
             userObj.serviceItemsPictures=categoryImage;
         }
-        // form.append('name', categoryName);
-        // form.append('parentId', parentCategoryId);
-        // form.append('categoryImage', categoryImage);
-        dispatch(addCategory(userObj));
+        var form=new FormData();
+        form.append('name', categoryName);
+        form.append('parentId', parentCategoryId);
+        form.append('servicePictures', categoryImage);
+        console.log("form",form);
+        dispatch(addCategory(form));
         setCategoryName('');
         setParentCategoryId('');
         setShow(false);
@@ -177,8 +179,8 @@ const Category = (props) => {
         const expandedIdsArray = expandedArray.map((item, index) => ({ _id: item.value }));
         const idsArray = expandedIdsArray.concat(checkedIdsArray);
 
-        if (checkedIdsArray.length > 0) {
-            dispatch(deleteCategoriesAction(checkedIdsArray))
+        if (idsArray.length > 0) {
+            dispatch(deleteCategoriesAction(idsArray))
                 .then(result => {
                     if (result) {
                         dispatch(getAllCategory())
@@ -196,7 +198,7 @@ const Category = (props) => {
         return (
             <Modal
                 modalTitle="Confirm"
-                show={deleteCategoryModal}
+                show={deleteCategoryModal} 
                 handleClose={() => setDeleteCategoryModal(false)}
                 buttons={[
                     {
@@ -214,11 +216,12 @@ const Category = (props) => {
                 ]}
             >
 
-
-                <h5>Expanded</h5>
-                { expandedArray.map((item, index) => <span key={index}>{item.name}</span>)}
-                <h5>Checked</h5>
-                { checkedArray.map((item, index) => <span key={index}>{item.name}</span>)}
+                <h2 style={{color:'red'}}>All these will be deleted!!!</h2>
+                <p>To delete a top category, please expand it</p>
+                <h5><b>Expanded</b></h5>
+                { expandedArray.map((item, index) => <li key={index}>{item.name}</li>)}
+                <h5><b>Checked</b></h5>
+                { checkedArray.map((item, index) => <li key={index}>{item.name}</li>)}
 
             </Modal>
         );
