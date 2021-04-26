@@ -142,7 +142,7 @@ function Cards(props) {
                   marginLeft: "auto",
                   color: "white",
                 }}
-                href="/checkout"
+                href="/cart"
               >
                 <IoIosCart />
                 <span style={{ marginLeft: "10px" }}>ADD TO CART</span>

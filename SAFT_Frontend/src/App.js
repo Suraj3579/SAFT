@@ -11,6 +11,7 @@ import Dashboard from "./components/Dashboard";
 import Services from "./components/services";
 import SimpleSlider from "./components/slicker";
 import Checkout from "./components/checkoutcomponent/Checkout";
+import Cart from "./components/cartcomponent/cart";
 
 const App = () => {
   return (
@@ -32,7 +33,7 @@ const App = () => {
             <AfterLogin />
           </Route>
           <Route path="/cart">
-            <Checkout />
+            <Cart />
           </Route>
           <Route path="/products">
             <Products />
