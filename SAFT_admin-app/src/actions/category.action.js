@@ -26,11 +26,11 @@ const getAllCategory = () => {
     }
 }
 
-export const addCategory = (userObj) => {
+export const addCategory = (form) => {
     return async dispatch => {
         dispatch({ type: categoryConstansts.ADD_NEW_CATEGORY_REQUEST });
         try {
-            const res = await axios.post(`/services/create`, userObj);
+            const res = await axios.post(`/services/create`, form);
             if (res.status === 200) {
                 dispatch({
                     type: categoryConstansts.ADD_NEW_CATEGORY_SUCCESS,
@@ -69,7 +69,7 @@ export const updateCategories = (form) => {
 export const deleteCategories = (ids) => {
     return async dispatch => {
         dispatch({ type: categoryConstansts.DELETE_CATEGORIES_REQUEST });
-        const res = await axios.post(`/category/delete`, {
+        const res = await axios.post(`/services/delete`, {
             payload: {
                 ids
             }

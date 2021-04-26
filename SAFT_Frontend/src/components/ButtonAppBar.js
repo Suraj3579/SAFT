@@ -7,7 +7,7 @@ import { Link } from "@material-ui/core";
 import logo from "../images/logo.jpeg";
 import cart from "../images/cart-plus-solid.svg";
 import user from "../images/user-circle-solid.svg";
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowDown, IoIosCart } from "react-icons/io";
 import DropdownMenu from "./dropdowncomponent/dropdownmenu";
 import "./Buttonstyle.css";
 // import { createMuiTheme } from "@material-ui/core/styles";
@@ -99,6 +99,18 @@ export default function ButtonAppBar(props) {
                 ]}
               />
             </div>
+          </Toolbar>
+        </AppBar>
+      </div>
+    );
+  } else if (props.lab === "none1") {
+    return (
+      <div className={classes.root}>
+        <AppBar style={{ position: "relative", backgroundColor: "white" }}>
+          <Toolbar>
+            <Link href="/" className={classes.title}>
+              <img src={logo} className={classes.logo} alt="" />
+            </Link>
           </Toolbar>
         </AppBar>
       </div>
