@@ -196,7 +196,7 @@ function Cart() {
               color="secondary"
               className={classes.submit}
             >
-              UPDATE CART
+              WANT MORE SERVICES ??
             </Button>
             <Button
               type="submit"

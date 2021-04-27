@@ -24,6 +24,7 @@ import Deposits from "./Deposits";
 import Orders from "./Orders";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 import Profile from "./profile";
+import logo from "../images/logo.jpeg";
 
 const theme = createMuiTheme({
   palette: {
@@ -115,6 +116,10 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
+  logo: {
+    height: "8vh",
+    weight: "8vw",
+  },
 }));
 
 export default function Dashboard() {
@@ -150,7 +155,7 @@ export default function Dashboard() {
             >
               <MenuIcon />
             </IconButton>
-            <Typography
+            {/* <Typography
               component="h1"
               variant="h6"
               color="white"
@@ -159,7 +164,10 @@ export default function Dashboard() {
               className={classes.title}
             >
               Dashboard
-            </Typography>
+            </Typography> */}
+            <Link href="/" className={classes.title}>
+              <img src={logo} className={classes.logo} alt="" />
+            </Link>
             {/* <IconButton color="white" style={{ color: "white" }}>
               <Badge badgeContent={4} color="secondary">
                 <NotificationsIcon />
