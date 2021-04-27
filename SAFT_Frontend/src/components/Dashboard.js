@@ -120,6 +120,7 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     height: "8vh",
     weight: "8vw",
+    marginLeft: "20px",
   },
 }));
 
@@ -142,7 +143,7 @@ export default function Dashboard() {
           position="absolute"
           className={clsx(classes.appBar, open && classes.appBarShift)}
         >
-          <Toolbar className={classes.toolbar}>
+          {/* <Toolbar className={classes.toolbar}>
             <IconButton
               edge="start"
               color="white"
@@ -155,8 +156,8 @@ export default function Dashboard() {
               )}
             >
               <MenuIcon />
-            </IconButton>
-            {/* <Typography
+            </IconButton> */}
+          {/* <Typography
               component="h1"
               variant="h6"
               color="white"
@@ -166,17 +167,17 @@ export default function Dashboard() {
             >
               Dashboard
             </Typography> */}
-            <Link href="/after" className={classes.title}>
-              <img src={logo} className={classes.logo} alt="" />
-            </Link>
-            {/* <IconButton color="white" style={{ color: "white" }}>
+          <Link href="/after" className={classes.title}>
+            <img src={logo} className={classes.logo} alt="" />
+          </Link>
+          {/* <IconButton color="white" style={{ color: "white" }}>
               <Badge badgeContent={4} color="secondary">
                 <NotificationsIcon />
               </Badge>
             </IconButton> */}
-          </Toolbar>
+          {/* </Toolbar> */}
         </AppBar>
-        <Drawer
+        {/* <Drawer
           variant="permanent"
           classes={{
             paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
@@ -189,10 +190,10 @@ export default function Dashboard() {
             </IconButton>
           </div>
           <Divider />
-          <List>{mainListItems}</List>
-          {/* <Divider />
+          <List>{mainListItems}</List> */}
+        {/* <Divider />
         <List>{secondaryListItems}</List> */}
-        </Drawer>
+        {/* </Drawer> */}
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
           <Container

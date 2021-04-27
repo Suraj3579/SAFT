@@ -12,7 +12,8 @@ import ServiceItems from "./components/serviceItems";
 import SimpleSlider from "./components/slicker";
 import Checkout from "./components/checkoutcomponent/Checkout";
 import Cart from "./components/cartcomponent/cart";
-import Subservices from './components/subservices';
+import Subservices from "./components/subservices";
+import EditProfile from "./components/editprofile";
 
 const App = () => {
   return (
@@ -42,8 +43,15 @@ const App = () => {
           <Route path="/dashboard">
             <Dashboard />
           </Route>
+          <Route path="/editprofile">
+            <EditProfile />
+          </Route>
           <Route exact path="/services/:serviceId" component={Subservices} />
-          <Route exact path="/services/serviceItems/:serviceId" component={ServiceItems} />
+          <Route
+            exact
+            path="/services/serviceItems/:serviceId"
+            component={ServiceItems}
+          />
           <Route path="/slicker">
             <SimpleSlider />
           </Route>
