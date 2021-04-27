@@ -100,10 +100,10 @@ function Cards(props) {
                 variant="subtitle1"
                 style={{ color: "green", marginRight: "10px" }}
               >
-                4.45
+                {props.rating}
               </Typography>
               <Typography variant="caption" style={{ color: "grey" }}>
-                7.4K Ratings
+                {props.ratingsCount}
               </Typography>
               <Button
                 variant="contained"
@@ -131,7 +131,7 @@ function Cards(props) {
                 gutterBottom="true"
                 style={{ color: "crimson" }}
               >
-                ₹99
+                ₹{props.price}
               </Typography>
               <Button
                 variant="contained"

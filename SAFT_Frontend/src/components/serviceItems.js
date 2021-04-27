@@ -87,6 +87,7 @@ const cards = [1, 2, 3, 4, 5, 6];
 
 export default function Services(props) {
   const classes = useStyles();
+  const [subServices, setSubServices] = useState([]);
 
   const settings = {
     arrows: true,
@@ -94,18 +95,21 @@ export default function Services(props) {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 3,
     slidesToScroll: 1,
     focusOnSelect: true,
   };
 
-  const [subServices, setSubServices] = useState([])
   useEffect(() => {
     console.log("serviceItems UseEffect");
-    axios.get(`http://localhost:2000/api/serviceItems/${props.match.params.serviceId}`).then((res) => {
-      setSubServices(res.data.serviceitems);
-      console.log('res.data :>> ', res.data);
-    });
+    axios
+      .get(
+        `http://localhost:2000/api/serviceItems/${props.match.params.serviceId}`
+      )
+      .then((res) => {
+        setSubServices(res.data.serviceitems);
+        console.log("res.data :>> ", res.data);
+      });
   }, []);
 
   return (
@@ -144,13 +148,17 @@ export default function Services(props) {
           >
             Service Category
           </Typography>
-          <Slider {...settings} style={{ margin: "20px" }}>
+          <Slider {...settings} >
             {subServices.map((card) => (
               <div key={card._id} style={{ padding: "20px" }}>
-                <Cards name={card.name}
-                      image={`http://localhost:2000/public/${card.serviceItemsPictures[0].img}`}
-                      // caption="description"
-                      />
+                <Cards
+                  name={card.name}
+                  image={`http://localhost:2000/public/${card.serviceItemsPictures[0].img}`}
+                  caption="description"
+                  rating="4.3"
+                  ratingsCount="100"
+                  price={card.price}
+                />
               </div>
             ))}
           </Slider>
