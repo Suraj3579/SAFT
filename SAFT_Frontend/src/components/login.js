@@ -75,14 +75,14 @@ export default function Login() {
     axios
       .post(`http://localhost:2000/api/login`, userObj)
       .then((res) => {
-        console.log(("response", res));
-        history.push("/after", {
-          useremail: userEmail.val,
-          userfullname: res.data.user.fullname,
-        });
+        console.log(("response", res.data.user));
+        localStorage.setItem("userId",res.data.user._id);
+        localStorage.setItem("userFullName",res.data.user.fullname);
+        localStorage.setItem("userEmail",res.data.user.email);
+        history.push("/after");
       })
       .catch((error) => {
-        console.log(error.response.data.message);
+        console.log("error==> ", error);
         setError(error.response.data.message);
       });
   };

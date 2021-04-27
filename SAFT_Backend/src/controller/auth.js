@@ -61,10 +61,12 @@ exports.login = (req, res) => {
           contactnumber,
           role,
           fullname,
+          _id,
         } = user;
         res.status(200).json({
           token,
           user: {
+            _id,
             firstname,
             lastname,
             email,
