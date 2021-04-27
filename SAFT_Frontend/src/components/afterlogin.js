@@ -98,69 +98,69 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "3px",
   },
 }));
-
+{
 // const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-const cards = [
-  {
-    id: 1,
-    serviceName: "Cleaning",
-    image: cleaningImage,
-  },
-  {
-    id: 2,
-    serviceName: "Electronics",
-    image:
-      "https://images.unsplash.com/photo-1573399054516-90665ecc44be?ixid=MXwxMjA3fDB8MHxzZWFyY2h8N3x8dGVsZXZpc2lvbnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80",
-  },
-  {
-    id: 3,
-    serviceName: "Assembly",
-    image:
-      "https://image.freepik.com/free-vector/furniture-assembly-isometric-illustration_1284-24376.jpg",
-  },
-  {
-    id: 4,
-    serviceName: "Handyman",
-    image:
-      "https://content3.jdmagicbox.com/comp/bangalore/y7/080pxx80.xx80.200126073512.l3y7/catalogue/quick-time-handyman-services-mahalakshmipuram-layout-bangalore-plumbers-fnt0xst1jf.jpg?clr=263340",
-  },
-  {
-    id: 5,
-    serviceName: "Plumbing",
-    image:
-      "https://cdn4.vectorstock.com/i/1000x1000/45/88/plumbing-service-flat-poster-plumber-vector-18794588.jpg",
-  },
-  {
-    id: 6,
-    serviceName: "Electrical",
-    image:
-      "https://thumbs.dreamstime.com/b/electrical-service-worker-electrician-tools-electrician-profession-man-work-tools-electrical-equipment-vector-lineman-154121084.jpg",
-  },
-  {
-    id: 7,
-    serviceName: "Painting",
-    image:
-      "https://secureservercdn.net/160.153.137.14/v6t.3da.myftpupload.com/wp-content/uploads/2020/05/Interior-Painting-Homezist-Painter-300x300.jpg",
-  },
-  {
-    id: 8,
-    serviceName: "Moving",
-    image:
-      "https://www.shiftingwale.com/resources/media/Packing_and_Moving_Services,_Moving_and_Packing_Services.jpg",
-  },
-  {
-    id: 9,
-    serviceName: "SmartHome",
-    image: "https://www.asmag.com/upload/pic/case/65711.136375.jpg",
-  },
-  {
-    id: 10,
-    serviceName: "Salon",
-    image:
-      "https://media.istockphoto.com/vectors/-vector-id1220134013?k=6&m=1220134013&s=612x612&w=0&h=2dDMsVq-X1ALxsnV1TwA8PVN7af7uvCB-Oia45-NZ-Y=",
-  },
-];
-
+// const cards = [
+//   {
+//     id: 1,
+//     serviceName: "Cleaning",
+//     image: cleaningImage,
+//   },
+//   {
+//     id: 2,
+//     serviceName: "Electronics",
+//     image:
+//       "https://images.unsplash.com/photo-1573399054516-90665ecc44be?ixid=MXwxMjA3fDB8MHxzZWFyY2h8N3x8dGVsZXZpc2lvbnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80",
+//   },
+//   {
+//     id: 3,
+//     serviceName: "Assembly",
+//     image:
+//       "https://image.freepik.com/free-vector/furniture-assembly-isometric-illustration_1284-24376.jpg",
+//   },
+//   {
+//     id: 4,
+//     serviceName: "Handyman",
+//     image:
+//       "https://content3.jdmagicbox.com/comp/bangalore/y7/080pxx80.xx80.200126073512.l3y7/catalogue/quick-time-handyman-services-mahalakshmipuram-layout-bangalore-plumbers-fnt0xst1jf.jpg?clr=263340",
+//   },
+//   {
+//     id: 5,
+//     serviceName: "Plumbing",
+//     image:
+//       "https://cdn4.vectorstock.com/i/1000x1000/45/88/plumbing-service-flat-poster-plumber-vector-18794588.jpg",
+//   },
+//   {
+//     id: 6,
+//     serviceName: "Electrical",
+//     image:
+//       "https://thumbs.dreamstime.com/b/electrical-service-worker-electrician-tools-electrician-profession-man-work-tools-electrical-equipment-vector-lineman-154121084.jpg",
+//   },
+//   {
+//     id: 7,
+//     serviceName: "Painting",
+//     image:
+//       "https://secureservercdn.net/160.153.137.14/v6t.3da.myftpupload.com/wp-content/uploads/2020/05/Interior-Painting-Homezist-Painter-300x300.jpg",
+//   },
+//   {
+//     id: 8,
+//     serviceName: "Moving",
+//     image:
+//       "https://www.shiftingwale.com/resources/media/Packing_and_Moving_Services,_Moving_and_Packing_Services.jpg",
+//   },
+//   {
+//     id: 9,
+//     serviceName: "SmartHome",
+//     image: "https://www.asmag.com/upload/pic/case/65711.136375.jpg",
+//   },
+//   {
+//     id: 10,
+//     serviceName: "Salon",
+//     image:
+//       "https://media.istockphoto.com/vectors/-vector-id1220134013?k=6&m=1220134013&s=612x612&w=0&h=2dDMsVq-X1ALxsnV1TwA8PVN7af7uvCB-Oia45-NZ-Y=",
+//   },
+// ];
+}
 export default function AfterLogin() {
   const classes = useStyles();
   // const history = useHistory();

@@ -95,7 +95,7 @@ export default function Services(props) {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: Math.min(4,subServices.length),
     slidesToScroll: 1,
     focusOnSelect: true,
   };
@@ -146,7 +146,7 @@ export default function Services(props) {
             variant="h4"
             style={{ marginLeft: "50px", marginTop: "20px" }}
           >
-            Service Category
+            Service Items
           </Typography>
           <Slider {...settings} >
             {subServices.map((card) => (
@@ -158,6 +158,7 @@ export default function Services(props) {
                   rating="4.3"
                   ratingsCount="100"
                   price={card.price}
+                  id={card._id}
                 />
               </div>
             ))}

@@ -33,7 +33,8 @@ exports.updateProfile = (req, res) => {
 };
 
 exports.getProfile = (req, res) => {
-  User.findOne({ _id: req.user._id }).exec((error, user) => {
+  console.log(req.body);
+  User.findOne({ _id: req.body.user._id }).exec((error, user) => {
     if (error) return res.status(400).json({ error });
     if (user) {
       res.status(200).json({ user });

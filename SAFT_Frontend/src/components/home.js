@@ -31,7 +31,7 @@ const Home = () => {
       <Grid className={classes.imageForm}>
         <Grid className={classes.image}></Grid>
         <Grid className={classes.signUpPage}>
-          <Login />
+          <SignUpPageRight />
         </Grid>
       </Grid>
     </Grid>
