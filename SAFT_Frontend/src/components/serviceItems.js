@@ -147,8 +147,9 @@ export default function Services(props) {
           <Slider {...settings} style={{ margin: "20px" }}>
             {subServices.map((card) => (
               <div key={card._id} style={{ padding: "20px" }}>
-                <Cards cards1={card.name}
+                <Cards name={card.name}
                       image={`http://localhost:2000/public/${card.serviceItemsPictures[0].img}`}
+                      // caption="description"
                       />
               </div>
             ))}

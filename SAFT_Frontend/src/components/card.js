@@ -80,7 +80,7 @@ function Cards(props) {
           />
           <CardContent className={classes.cardContent}>
             <Typography gutterBottom variant="h5" component="h2">
-              {props.cards1}
+              {props.name}
             </Typography>
             <div
               style={{
@@ -156,8 +156,7 @@ function Cards(props) {
               }}
             />
             <Typography variation="caption">
-              This is the first line of the content.The second line would be
-              second line only.
+              {props.caption}
             </Typography>
           </CardContent>
           {/* <CardActions>
