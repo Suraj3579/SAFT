@@ -164,15 +164,17 @@ const cards = [
 export default function Subservices(props) {
   const classes = useStyles();
   const history = useHistory();
-//   const { useremail, userfullname } = history.location.state;
+  //   const { useremail, userfullname } = history.location.state;
   const [allSubservicesArray, setallSubservicesArray] = useState([]);
-
+  const [parentName, setParentName] = useState("");
   useEffect(() => {
-    console.log("useffect");
-    axios.get(`http://localhost:2000/api/services/${props.match.params.serviceId}`).then((res) => {
-      setallSubservicesArray(res.data.service);
-      console.log('res.data :>> ', res.data);
-    });
+    axios
+      .get(`http://localhost:2000/api/services/${props.match.params.serviceId}`)
+      .then((res) => {
+        setallSubservicesArray(res.data.service);
+        setParentName(res.data.name);
+        console.log("res.data :>> ", res.data);
+      });
   }, []);
   return (
     <React.Fragment>
@@ -191,7 +193,8 @@ export default function Subservices(props) {
                 color="textPrimary"
                 gutterBottom
               >
-                Services At FingerTips{props.match.params.serviceId}
+                Services At FingerTips
+                {/* {props.match.params.serviceId} */}
               </Typography>
               <Typography
                 variant="h5"
@@ -218,6 +221,14 @@ export default function Subservices(props) {
             </Container>
           </div>
           <Container className={classes.cardGrid} maxWidth="md">
+            <Typography
+              gutterBottom
+              variant="body1"
+              component="h1"
+              align="center"
+            >
+              {parentName+' Services'}
+            </Typography>
             {/* End hero unit */}
             <Grid container spacing={1} className={classes.root}>
               {allSubservicesArray.map((card) => (

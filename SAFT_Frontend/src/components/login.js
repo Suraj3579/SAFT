@@ -79,6 +79,7 @@ export default function Login() {
         localStorage.setItem("userId",res.data.user._id);
         localStorage.setItem("userFullName",res.data.user.fullname);
         localStorage.setItem("userEmail",res.data.user.email);
+        localStorage.setItem("jwtToken", res.data.token);
         history.push("/after");
       })
       .catch((error) => {

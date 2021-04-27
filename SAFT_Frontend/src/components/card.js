@@ -9,6 +9,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { IoIosCart, IoIosThunderstorm } from "react-icons/io";
 import { Thunder } from "react-icons/ai";
+const axios = require(`axios`);
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -19,6 +20,10 @@ const theme = createMuiTheme({
     },
   },
 });
+
+const headers = {
+  Authorization: "Bearer " + localStorage.getItem("jwtToken"),
+};
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -69,6 +74,28 @@ const useStyles = makeStyles((theme) => ({
 function Cards(props) {
   const classes = useStyles();
 
+  const onClickAddtoCart = (e) => {
+    e.preventDefault();
+    axios
+      .post(
+        `http://localhost:2000/api/user/cart/add-to-cart`,
+        {
+          cartItems: [{
+            serviceiteam: props.id,
+            quantity: 1,
+            price: props.price,
+          }],
+        },
+        { headers }
+      )
+      .then((res) => {
+        alert("service item added to card");
+        console.log("res-card--> ", res);
+      })
+      .catch((error) => {
+        console.log("error-card--> ", error);
+      });
+  };
   return (
     <React.Fragment>
       <ThemeProvider theme={theme}>
@@ -105,7 +132,7 @@ function Cards(props) {
               <Typography variant="caption" style={{ color: "grey" }}>
                 {props.ratingsCount}
               </Typography>
-              <Button
+              {/* <Button
                 variant="contained"
                 size="small"
                 color="primary"
@@ -117,7 +144,7 @@ function Cards(props) {
                 href="/checkout"
               >
                 <span>CHECKOUT</span>
-              </Button>
+              </Button> */}
             </div>
             <div
               style={{
@@ -136,13 +163,14 @@ function Cards(props) {
               <Button
                 variant="contained"
                 size="small"
-                color="secondary"
+                color="primary"
                 style={{
                   marginBottom: "10px",
                   marginLeft: "auto",
                   color: "white",
                 }}
                 href="/cart"
+                onClick={onClickAddtoCart}
               >
                 <IoIosCart />
                 <span style={{ marginLeft: "10px" }}>ADD TO CART</span>
@@ -155,9 +183,7 @@ function Cards(props) {
                 height: 1,
               }}
             />
-            <Typography variation="caption">
-              {props.caption}
-            </Typography>
+            <Typography variation="caption">{props.caption}</Typography>
           </CardContent>
           {/* <CardActions>
                       <Button variant="contained" size="small" color="primary">

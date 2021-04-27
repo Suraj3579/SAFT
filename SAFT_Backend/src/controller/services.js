@@ -30,7 +30,7 @@ function createservices(services, parentId = null) {
 exports.createService = (req, res) => {
   let servicePictures = [];
   if (req.files.length > 0) {
-    console.log('req.files.length :>> ', req.files);
+    console.log("req.files.length :>> ", req.files);
     servicePictures = req.files.map((file) => {
       console.log(file.filename);
       return { img: file.filename };
@@ -68,6 +68,7 @@ exports.getServices = (req, res, next) => {
       });
     }
     if (services) {
+      // console.log(services)
       const servicesList = createservices(services);
       res.status(200).json({
         servicesList,
@@ -76,10 +77,9 @@ exports.getServices = (req, res, next) => {
   });
 };
 
-
 exports.deleteServices = async (req, res) => {
   const { ids } = req.body.payload;
-  console.log('ids :>> ', ids);
+  console.log("ids :>> ", ids);
   const deletedServices = [];
   for (let i = 0; i < ids.length; i++) {
     const deleteService = await Service.findOneAndDelete({
@@ -96,11 +96,17 @@ exports.deleteServices = async (req, res) => {
   }
 };
 
-
 exports.getservicesbyserviceId = (req, res) => {
   console.log("getservicesbyserviceId");
   const { parentId } = req.params;
-  console.log(parentId);
+  // console.log(parentId);
+  let parentName = "";
+  Service.findOne({ _id: parentId }).exec((error, service) => {
+    // console.log(service.name)
+    if (!error) {
+      parentName = service.name;
+    }
+  });
   Service.find({ parentId: parentId })
     // .select("")
     .exec((error, service) => {
@@ -109,19 +115,18 @@ exports.getservicesbyserviceId = (req, res) => {
       }
 
       if (service) {
-        console.log("service: ",service);
-        return res.status(200).json({service});
+        return res.status(200).json({name:parentName, service });
         // Service.find({ service: service._id }).exec((error, serviceChildren) => {
-        //   if (error) 
+        //   if (error)
         //   {
         //     return res.status(400).json({ error });
         //   }
-        //   if (serviceChildren.length > 0) 
+        //   if (serviceChildren.length > 0)
         //     {
         //       res.status(200).json({
         //         serviceChildren,
         //   });
-        //   } 
+        //   }
         //   else
         //   {
         //     res.status(200).json({ serviceChildren });

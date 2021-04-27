@@ -26,6 +26,7 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 import Profile from "./profile";
 import logo from "../images/logo.jpeg";
 import ButtonAppBar from "./ButtonAppBar";
+import EditProfile from './editprofile'
 
 const theme = createMuiTheme({
   palette: {
@@ -141,7 +142,7 @@ export default function Dashboard() {
         <CssBaseline />
         <AppBar
           position="absolute"
-          className={clsx(classes.appBar, open && classes.appBarShift)}
+          // className={clsx(classes.appBar, open && classes.appBarShift)}
         >
           {/* <Toolbar className={classes.toolbar}>
             <IconButton
@@ -226,7 +227,8 @@ export default function Dashboard() {
             <Grid container spacing={6}>
               <Grid item xs={12} sm={4}>
                 <Paper style={{ padding: theme.spacing(2) }}>
-                  <Profile name="up" />
+                  {/* <Profile name="up" /> */}
+                  <EditProfile/>
                 </Paper>
               </Grid>
               <Grid item xs={12} sm={4}>
