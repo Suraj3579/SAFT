@@ -101,7 +101,7 @@ export default function Services(props) {
 
   const [subServices, setSubServices] = useState([])
   useEffect(() => {
-    console.log("useffect");
+    console.log("serviceItems UseEffect");
     axios.get(`http://localhost:2000/api/serviceItems/${props.match.params.serviceId}`).then((res) => {
       setSubServices(res.data.serviceitems);
       console.log('res.data :>> ', res.data);
@@ -148,7 +148,7 @@ export default function Services(props) {
             {subServices.map((card) => (
               <div key={card._id} style={{ padding: "20px" }}>
                 <Cards cards1={card.name}
-                      image={`http://localhost:2000/public/${card.servicePictures[0].img}`}
+                      image={`http://localhost:2000/public/${card.serviceItemsPictures[0].img}`}
                       />
               </div>
             ))}
