@@ -16,10 +16,14 @@ exports.addItemToCart = (req, res) => {
     if (cart) {
       //if cart already exists then update cart by quantity
       let promiseArray = [];
-
-      req.body.cartItems.forEach((cartItem) => {
+      console.log(req.body.cartItems);
+      //Array.from(req.body.cartItems).forEach((cartItem) => {
+        const cartItem=req.body.cartItems
+        //for(const cartItem of req.body.cartItems){
+        console.log(cartItem);
         const serviceitem = cartItem.serviceitem;
         const item = cart.cartItems.find((c) => c.serviceitem == serviceitem);
+        console.log(item);
         let condition, update;
         if (item) {
           condition = { user: req.user._id, "cartItems.serviceitem": serviceitem };
@@ -37,15 +41,8 @@ exports.addItemToCart = (req, res) => {
           };
         }
         promiseArray.push(runUpdate(condition, update));
-        //Cart.findOneAndUpdate(condition, update, { new: true }).exec();
-        // .exec((error, _cart) => {
-        //     if(error) return res.status(400).json({ error });
-        //     if(_cart){
-        //         //return res.status(201).json({ cart: _cart });
-        //         updateCount++;
-        //     }
-        // })
-      });
+      //}
+    //});
       Promise.all(promiseArray)
         .then((response) => res.status(201).json({ response }))
         .catch((error) => res.status(400).json({ error }));
@@ -72,9 +69,13 @@ exports.getCartItems = (req, res) => {
     .populate("cartItems.serviceitem", "_id name price serviceItemsPictures")
     .exec((error, cart) => {
       if (error) return res.status(400).json({ error });
+      console.log(cart);
       if (cart) {
         let cartItems = {};
-        cart.cartItems.forEach((item, index) => {
+        for(const item of cart.cartItems)
+        {
+          //console.log(item);
+        //cart.cartItems.forEach((item, index) => {
           cartItems[item.serviceitem._id.toString()] = {
             _id: item.serviceitem._id.toString(),
             name: item.serviceitem.name,
@@ -82,7 +83,8 @@ exports.getCartItems = (req, res) => {
             price: item.serviceitem.price,
             // qty: item.quantity,
           };
-        });
+        //});
+        }
         res.status(200).json({ cartItems });
       }
     });
