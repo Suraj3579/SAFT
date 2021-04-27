@@ -3,7 +3,7 @@ const router = express.Router();
 const multer = require("multer");
 const shortid = require("shortid");
 const path = require("path");
-const {createserviceItems , getserviceItems, deleteserviceItemById, getserviceItemsbyservice} = require('../controller/serviceItems');
+const {createserviceItems , getserviceItems, deleteserviceItemById, getserviceItemsbyserviceId} = require('../controller/serviceItems');
 const {adminAccess, requireSignin} = require('../middleware/index');
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -16,8 +16,8 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 router.post('/serviceItems/create',requireSignin,adminAccess,upload.array("serviceItemsPictures"),createserviceItems);
-router.get('/seviceItems/getserviceItems',getserviceItems);
-router.get('/seviceItems/:slug',getserviceItemsbyservice);
-router.delete('/seviceItems/deleteserviceItembyId',requireSignin,adminAccess,deleteserviceItemById);
+router.get('/serviceItems/getserviceItems',getserviceItems);
+router.get('/serviceItems/:service',getserviceItemsbyserviceId);
+router.delete('/serviceItems/deleteserviceItembyId',requireSignin,adminAccess,deleteserviceItemById);
 
 module.exports=router;

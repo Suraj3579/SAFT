@@ -5,7 +5,7 @@ import Input from '../../components/UI/Input';
 import { Container, Row, Col } from 'react-bootstrap';
 import {linearCategories, linearCategoriesParent} from '../../helpers/linearCategories';
 import { useSelector, useDispatch } from 'react-redux';
-import { createPage, getAllCategory } from '../../actions';
+import { createServiceItem, getAllCategory } from '../../actions';
 
 /**
 * @author
@@ -24,7 +24,8 @@ const NewPage = (props) => {
     const [parentCategoryId, setParentCategoryId] = useState('')
     const [childCategoryId, setChildCategoryId] = useState('');
     const [grandchildCategoryId, setGrandchildCategoryId] = useState('');
-
+    const [grandchildName, setGrandchildName]=useState('');
+    const [grandchildImage, setGrandchildImage]=useState('');
     const [price, setPrice] = useState('');
     const [type, setType] = useState('');
     const [banners, setBanners] = useState([]);
@@ -33,11 +34,11 @@ const NewPage = (props) => {
     const page = useSelector(state => state.page);
 
 
-    useEffect(() => {
-        dispatch(getAllCategory());
-        setCategories(linearCategories(category.categories));
-        setParentCategories(linearCategoriesParent(category.categories));
-    }, [category]);
+    // useEffect(() => {
+    //     dispatch(getAllCategory());
+    //     setCategories(linearCategories(category.categories));
+    //     setParentCategories(linearCategoriesParent(category.categories));
+    // }, [category]);
 
 
     // useEffect(() => {
@@ -87,17 +88,19 @@ const NewPage = (props) => {
     }
 
     const onCategoryChangeGrandChild = (e) => {
-        // console.log('e.target.value :>> ', e.target.value);
-        const category = categories.find(category => category.value == e.target.value);
-        setGrandchildCategoryId(e.target.value);
-        console.log(category);
+        console.log('childCategoryId :>> ', childCategoryId);
+        setGrandchildName(e.target.value);
+        // const category = categories.find(category => category.value == e.target.value);
+        // setGrandchildCategoryId(e.target.value);
+        // console.log(category);
     }
 
     
 
     const handleBannerImages = (e) => {
         console.log(e);
-        setBanners([...banners, e.target.files[0]]);
+        // setBanners([...banners, e.target.files[0]]);
+        setGrandchildImage(e.target.files[0]);
     }
 
     const handleProductImages = (e) => {
@@ -113,22 +116,13 @@ const NewPage = (props) => {
             setCreateModal(false);
             return;
         }
+        var form=new FormData();
+        form.append('name', grandchildName);
+        form.append('price', price);
+        form.append('service',childCategoryId);
+        form.append('serviceItemsPictures',grandchildImage);
 
-        const serviceItem={
-            parentId: childCategoryId,
-        }
-        // form.append('title', title);
-        // form.append('description', desc);
-        // form.append('category', categoryId);
-        // form.append('type', type);
-        // banners.forEach((banner, index) => {
-        //     form.append('banners', banner);
-        // });
-        // products.forEach((product, index) => {
-        //     form.append('products', product);
-        // });
-
-        // dispatch(createPage(form));
+        dispatch(createServiceItem(form));
 
         
     }
@@ -169,8 +163,8 @@ const NewPage = (props) => {
                     <Row>
                         <Col>
                             <Input 
-                                type="select"
-                                value={grandchildCategoryId}
+                                type="input"
+                                value={grandchildName}
                                 onChange={onCategoryChangeGrandChild}
                                 options={grandChildrenCateogories}
                                 placeholder={'Select sub services'}
@@ -189,7 +183,7 @@ const NewPage = (props) => {
                             />
                         </Col>
                     </Row>
-
+{/* 
                     {
                             banners.length > 0 ? 
                             banners.map((banner, index) => 
@@ -197,7 +191,7 @@ const NewPage = (props) => {
                                     <Col>{banner.name}</Col>
                                 </Row>
                             ) : null
-                    }
+                    } */}
                     <Row>
                         <Col>
                             <Input
@@ -217,7 +211,7 @@ const NewPage = (props) => {
                                 </Row>
                             ) : null
                         }
-                    <Row>
+                    {/* <Row>
                         <Col>
                             <Input 
                                 className="form-control"
@@ -226,7 +220,7 @@ const NewPage = (props) => {
                                 onChange={handleProductImages}
                             />
                         </Col>
-                    </Row>
+                    </Row> */}
 
                     
 
@@ -240,12 +234,15 @@ const NewPage = (props) => {
     return (
         <Layout sidebar>
             {
-                page.loading ? 
-                <p>Creating Page...please wait</p>
-                :
+
                 <>
                     {renderCreatePageModal()}
-                    <button onClick={() => setCreateModal(true)}>Create/Edit subservice</button>
+                    <button onClick={() => {
+                        setCreateModal(true);
+                        dispatch(getAllCategory());
+                        setCategories(linearCategories(category.categories));
+                        setParentCategories(linearCategoriesParent(category.categories));
+                    }}>Create/Edit subservice</button>
                 </>
             }
             

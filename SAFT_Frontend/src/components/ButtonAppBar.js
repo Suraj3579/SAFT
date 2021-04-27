@@ -77,7 +77,7 @@ export default function ButtonAppBar(props) {
       <div className={classes.root}>
         <AppBar style={{ position: "relative", backgroundColor: "white" }}>
           <Toolbar>
-            <Link href="/" className={classes.title}>
+            <Link href="/after" className={classes.title}>
               <img src={logo} className={classes.logo} alt="" />
             </Link>
             <div>
@@ -108,7 +108,7 @@ export default function ButtonAppBar(props) {
       <div className={classes.root}>
         <AppBar style={{ position: "relative", backgroundColor: "white" }}>
           <Toolbar>
-            <Link href="/" className={classes.title}>
+            <Link href="/after" className={classes.title}>
               <img src={logo} className={classes.logo} alt="" />
             </Link>
           </Toolbar>
@@ -128,7 +128,7 @@ export default function ButtonAppBar(props) {
             >
               <MenuIcon />
             </IconButton> */}
-            <Link href="/" className={classes.title}>
+            <Link href="/after" className={classes.title}>
               <img src={logo} className={classes.logo} alt="" />
             </Link>
             <Button size="large" href="/login" className={classes.button}>
@@ -154,7 +154,7 @@ export default function ButtonAppBar(props) {
             >
               <MenuIcon />
             </IconButton> */}
-            <Link href="/" className={classes.title}>
+            <Link href="/after" className={classes.title}>
               <img src={logo} className={classes.logo} alt="" />
             </Link>
             <Button size="large" href="/login" className={classes.button}>
@@ -177,7 +177,7 @@ export default function ButtonAppBar(props) {
             >
               <MenuIcon />
             </IconButton> */}
-            <Link href="/" className={classes.title}>
+            <Link href="/after" className={classes.title}>
               <img src={logo} className={classes.logo} alt="" />
             </Link>
 
@@ -193,7 +193,7 @@ export default function ButtonAppBar(props) {
       <div className={classes.root}>
         <AppBar style={{ position: "relative", backgroundColor: "white" }}>
           <Toolbar>
-            <Link href="/" className={classes.title}>
+            <Link href="/after" className={classes.title}>
               <img src={logo} className={classes.logo} alt="" />
             </Link>
             <div>

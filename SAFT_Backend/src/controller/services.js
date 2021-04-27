@@ -29,15 +29,16 @@ function createservices(services, parentId = null) {
 
 exports.createService = (req, res) => {
   let servicePictures = [];
-
   if (req.files.length > 0) {
+    console.log('req.files.length :>> ', req.files);
     servicePictures = req.files.map((file) => {
-      return { img: file.location };
+      console.log(file.filename);
+      return { img: file.filename };
     });
   }
   const servicesObj = new Service({
     name: req.body.name,
-    slug: `$(slugify(req.body.name))-$(shortid.generate())`,
+    slug: `${slugify(req.body.name)}-${shortid.generate()}`,
     servicePictures,
   });
   if (req.body.parentId) {
@@ -59,6 +60,7 @@ exports.createService = (req, res) => {
 };
 
 exports.getServices = (req, res, next) => {
+  console.log("getServices");
   Service.find({}).exec((error, services) => {
     if (error) {
       return res.status(400).json({
@@ -77,11 +79,12 @@ exports.getServices = (req, res, next) => {
 
 exports.deleteServices = async (req, res) => {
   const { ids } = req.body.payload;
+  console.log('ids :>> ', ids);
   const deletedServices = [];
   for (let i = 0; i < ids.length; i++) {
     const deleteService = await Service.findOneAndDelete({
       _id: ids[i]._id,
-      createdBy: req.user._id,
+      // createdBy: req.user._id,
     });
     deletedServices.push(deleteService);
   }
@@ -91,4 +94,39 @@ exports.deleteServices = async (req, res) => {
   } else {
     res.status(400).json({ message: "Something went wrong" });
   }
+};
+
+
+exports.getservicesbyserviceId = (req, res) => {
+  console.log("getservicesbyserviceId");
+  const { parentId } = req.params;
+  console.log(parentId);
+  Service.find({ parentId: parentId })
+    // .select("")
+    .exec((error, service) => {
+      if (error) {
+        return res.status(400).json({ error });
+      }
+
+      if (service) {
+        console.log("service: ",service);
+        return res.status(200).json({service});
+        // Service.find({ service: service._id }).exec((error, serviceChildren) => {
+        //   if (error) 
+        //   {
+        //     return res.status(400).json({ error });
+        //   }
+        //   if (serviceChildren.length > 0) 
+        //     {
+        //       res.status(200).json({
+        //         serviceChildren,
+        //   });
+        //   } 
+        //   else
+        //   {
+        //     res.status(200).json({ serviceChildren });
+        //   }
+        // });
+      }
+    });
 };
