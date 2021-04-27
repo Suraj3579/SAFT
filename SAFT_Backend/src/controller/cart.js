@@ -74,7 +74,7 @@ exports.getCartItems = (req, res) => {
         let cartItems = {};
         for(const item of cart.cartItems)
         {
-          //console.log(item);
+          console.log(item);
         //cart.cartItems.forEach((item, index) => {
           cartItems[item.serviceitem._id.toString()] = {
             _id: item.serviceitem._id.toString(),
