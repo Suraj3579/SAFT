@@ -6,6 +6,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
+import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
+import Profile from "../profile";
+import CartItem from "./cartitem";
 
 const theme = createMuiTheme({
   palette: {
@@ -50,12 +54,13 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Helvetica, sans-serif",
   },
   submit: {
-    marginTop: "100px",
+    marginTop: "200px",
     marginRight: "40px",
     marginLeft: "40px",
     marginBottom: "10px",
     height: "50px",
     width: "320px",
+    color: "white",
   },
   submit1: {
     margin: "10px",
@@ -67,6 +72,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const cartitems = [
+  {
+    id: 1,
+    category: "Category1",
+    name: "cartitem1",
+    cost: "100",
+  },
+  {
+    id: 2,
+    category: "Category2",
+    name: "cartitem2",
+    cost: "200",
+  },
+];
+
 function Cart() {
   const classes = useStyles();
   return (
@@ -75,7 +95,40 @@ function Cart() {
         <CssBaseline />
         <ButtonAppBar lab="a" />
         <div className={classes.root}>
-          <Paper elevation={1} className={classes.leftpaper} />
+          {/* <Paper elevation={1} className={classes.leftpaper} /> */}
+          <Container maxWidth="lg" className={classes.leftpaper}>
+            <Paper style={{ padding: theme.spacing(2) }}>
+              <Typography
+                variant="button"
+                style={{
+                  marginRight: "10px",
+                  marginLeft: "40px",
+                  fontWeight: "bold",
+                }}
+              >
+                CATEGORY / SERVICE
+              </Typography>
+              <Typography
+                variant="button"
+                style={{
+                  marginRight: "10px",
+                  marginLeft: "350px",
+                  fontWeight: "bold",
+                }}
+              >
+                PRICE
+              </Typography>
+            </Paper>
+            <Grid container spacing={0}>
+              {cartitems.map((cartitem) => (
+                <Grid item key={cartitem.id} xs={12} sm={12}>
+                  <Paper style={{ padding: theme.spacing(2) }}>
+                    <CartItem service={cartitem} />
+                  </Paper>
+                </Grid>
+              ))}
+            </Grid>
+          </Container>
           <Paper elevation={3}>
             <Typography
               variant="h5"
@@ -190,19 +243,19 @@ function Cart() {
                 marginRight: "40px",
               }}
             />
-            <Button
+            {/* <Button
               type="submit"
               variant="contained"
               color="secondary"
               className={classes.submit}
             >
               WANT MORE SERVICES ??
-            </Button>
+            </Button> */}
             <Button
               type="submit"
               variant="contained"
               color="primary"
-              className={classes.submit1}
+              className={classes.submit}
             >
               PROCEED TO CHECKOUT
             </Button>
