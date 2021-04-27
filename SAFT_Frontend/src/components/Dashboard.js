@@ -25,11 +25,12 @@ import Orders from "./Orders";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 import Profile from "./profile";
 import logo from "../images/logo.jpeg";
+import ButtonAppBar from "./ButtonAppBar";
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "#ffa000",
+      main: "#ffffff",
     },
     secondary: {
       main: "#ffa500",
@@ -145,7 +146,7 @@ export default function Dashboard() {
             <IconButton
               edge="start"
               color="white"
-              style={{ color: "white" }}
+              style={{ color: "orange" }}
               aria-label="open drawer"
               onClick={handleDrawerOpen}
               className={clsx(
@@ -165,7 +166,7 @@ export default function Dashboard() {
             >
               Dashboard
             </Typography> */}
-            <Link href="/" className={classes.title}>
+            <Link href="/after" className={classes.title}>
               <img src={logo} className={classes.logo} alt="" />
             </Link>
             {/* <IconButton color="white" style={{ color: "white" }}>
@@ -194,7 +195,11 @@ export default function Dashboard() {
         </Drawer>
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
-          <Container maxWidth="lg" className={classes.container}>
+          <Container
+            maxWidth="lg"
+            className={classes.container}
+            style={{ marginTop: "75px" }}
+          >
             <Grid container spacing={3}>
               {/* Chart */}
               {/* <Grid item xs={12} md={8} lg={9}>
@@ -216,11 +221,26 @@ export default function Dashboard() {
               </Grid>
             </Grid>
           </Container>
-          <Container maxWidth="xs" className={classes.container}>
-            <Grid container spacing={3}>
-              <Grid item xs={12}>
+          <Container maxWidth="lg" className={classes.container}>
+            <Grid container spacing={6}>
+              <Grid item xs={12} sm={4}>
                 <Paper style={{ padding: theme.spacing(2) }}>
-                  <Profile />
+                  <Profile name="up" />
+                </Paper>
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <Paper style={{ padding: theme.spacing(2) }}>
+                  <Profile name="ad" />
+                </Paper>
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <Paper
+                  style={{
+                    padding: theme.spacing(2),
+                    justifyContent: "center",
+                  }}
+                >
+                  <Profile name="pd" />
                 </Paper>
               </Grid>
             </Grid>

@@ -9,91 +9,204 @@ const user = {
   contactNumber: "6302781108",
 };
 
+const Address = {
+  firstName: "Phanindra Reddy",
+  lastName: "Vajrala",
+  addressline1: "Address Line 1",
+  city: "City",
+  country: "Country",
+  postalcode: "PostalCode",
+};
+
+const paymentdetails = {
+  nameoncard: "Name on Card",
+  cardnumber: "Card Number",
+  expirydate: "Expiry Date",
+  cvv: "CVV",
+};
+
 const useStyles = makeStyles((theme) => ({
-  // root: {
-  //   margin: "auto",
-  // },
+  root: {
+    margin: "auto",
+  },
   large: {
     backgroundColor: "orange",
     width: theme.spacing(10),
     height: theme.spacing(10),
+    marginTop: "10px",
+    marginBottom: "10px",
   },
 }));
 
-function Profile() {
+function Profile(props) {
   const classes = useStyles();
 
-  return (
-    <React.Fragment>
-      <div className={classes.root}>
-        <Typography variant="h6" color="primary">
-          User Info
-        </Typography>
-        <hr
-          style={{
-            color: "orange",
-            backgroundColor: "orange",
-            height: 1,
-            marginLeft: "0px",
-            marginRight: "0px",
-          }}
-        />
-        <Avatar className={classes.large}>
-          {user.firstName[0]}
-          {user.lastName[0]}
-        </Avatar>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            flexWrap: "wrap",
-          }}
-        >
-          <Typography variant="button" style={{ marginRight: "10px" }}>
-            First Name :
+  if (props.name === "up") {
+    return (
+      <React.Fragment>
+        <div className={classes.root}>
+          <Typography variant="h6" color="secondary">
+            USER INFO
           </Typography>
-          <Typography variant="body1">{user.firstName}</Typography>
-        </div>
+          <hr
+            style={{
+              color: "orange",
+              backgroundColor: "orange",
+              height: 1,
+              marginLeft: "0px",
+              marginRight: "0px",
+            }}
+          />
+          <Avatar className={classes.large}>
+            {user.firstName[0]}
+            {user.lastName[0]}
+          </Avatar>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              flexWrap: "wrap",
+            }}
+          >
+            <Typography variant="button" style={{ marginRight: "10px" }}>
+              First Name :
+            </Typography>
+            <Typography variant="body1">{user.firstName}</Typography>
+          </div>
 
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            flexWrap: "wrap",
-          }}
-        >
-          <Typography variant="button" style={{ marginRight: "10px" }}>
-            Last Name :
-          </Typography>
-          <Typography variant="body1">{user.lastName}</Typography>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              flexWrap: "wrap",
+            }}
+          >
+            <Typography variant="button" style={{ marginRight: "10px" }}>
+              Last Name :
+            </Typography>
+            <Typography variant="body1">{user.lastName}</Typography>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              flexWrap: "wrap",
+            }}
+          >
+            <Typography variant="button" style={{ marginRight: "10px" }}>
+              Email :
+            </Typography>
+            <Typography variant="body1">{user.email}</Typography>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              flexWrap: "wrap",
+            }}
+          >
+            <Typography variant="button" style={{ marginRight: "10px" }}>
+              Mobile :
+            </Typography>
+            <Typography variant="body1">{user.contactNumber}</Typography>
+          </div>
         </div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            flexWrap: "wrap",
-          }}
-        >
-          <Typography variant="button" style={{ marginRight: "10px" }}>
-            Email :
+      </React.Fragment>
+    );
+  } else if (props.name === "ad") {
+    return (
+      <React.Fragment>
+        <div className={classes.root}>
+          <Typography variant="h6" color="secondary">
+            ADDRESS
           </Typography>
-          <Typography variant="body1">{user.email}</Typography>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            flexWrap: "wrap",
-          }}
-        >
-          <Typography variant="button" style={{ marginRight: "10px" }}>
-            Mobile :
+          <hr
+            style={{
+              color: "orange",
+              backgroundColor: "orange",
+              height: 1,
+              marginLeft: "0px",
+              marginRight: "0px",
+            }}
+          />
+          <Typography variant="body1">
+            {Address.firstName} {Address.lastName}
           </Typography>
-          <Typography variant="body1">{user.contactNumber}</Typography>
+          <Typography variant="body1">{Address.addressline1}</Typography>
+          <Typography variant="body1">{Address.city}</Typography>
+          <Typography variant="body1">{Address.country}</Typography>
+          <Typography variant="body1">{Address.postalcode}</Typography>
         </div>
-      </div>
-    </React.Fragment>
-  );
+      </React.Fragment>
+    );
+  } else if (props.name === "pd") {
+    return (
+      <React.Fragment>
+        <div className={classes.root}>
+          <Typography variant="h6" color="secondary">
+            CARD DETAILS
+          </Typography>
+          <hr
+            style={{
+              color: "orange",
+              backgroundColor: "orange",
+              height: 1,
+              marginLeft: "0px",
+              marginRight: "0px",
+            }}
+          />
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              flexWrap: "wrap",
+            }}
+          >
+            <Typography variant="button" style={{ marginRight: "10px" }}>
+              NAME ON CARD :
+            </Typography>
+            <Typography variant="body1">{paymentdetails.nameoncard}</Typography>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              flexWrap: "wrap",
+            }}
+          >
+            <Typography variant="button" style={{ marginRight: "10px" }}>
+              CARD NUMBER :
+            </Typography>
+            <Typography variant="body1">{paymentdetails.cardnumber}</Typography>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              flexWrap: "wrap",
+            }}
+          >
+            <Typography variant="button" style={{ marginRight: "10px" }}>
+              EXPIRY DATE :
+            </Typography>
+            <Typography variant="body1">{paymentdetails.expirydate}</Typography>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              flexWrap: "wrap",
+            }}
+          >
+            <Typography variant="button" style={{ marginRight: "10px" }}>
+              CVV :
+            </Typography>
+            <Typography variant="body1">{paymentdetails.cvv}</Typography>
+          </div>
+        </div>
+      </React.Fragment>
+    );
+  }
 }
 
 export default Profile;
