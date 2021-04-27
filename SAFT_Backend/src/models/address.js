@@ -16,12 +16,12 @@ const addressSchema = new mongoose.Schema({
     min: 3,
     max: 50,
   },
-  mobileNumber: {
+  mobilenumber: {
     type: String,
     required: true,
-    trim: true,
+    min: 10,
   },
-  pinCode: {
+  pincode: {
     type: String,
     required: true,
     trim: true,
@@ -52,19 +52,12 @@ const addressSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  pincode: {
-    type: String,
-    required: true,
-  },
-  alternatePhone: {
-    type: String,
-  },
-  addressType: {
-    type: String,
-    required: true,
-    enum: ["home", "work"],
-    required: true,
-  },
+  // addressType: {
+  //   type: String,
+  //   required: true,
+  //   enum: ["home", "work"],
+  //   required: true,
+  // },
 });
 
 const userAddressSchema = new mongoose.Schema(

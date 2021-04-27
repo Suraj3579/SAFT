@@ -5,6 +5,7 @@ import { CssBaseline } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import SignUpPageRight from "./signUpPageRight";
 import homeBGimage from "../images/homeBGimage.jpg";
+import Login from "./login";
 const useStyles = makeStyles((theme) => ({
   imageForm: {
     display: "flex",
@@ -30,7 +31,7 @@ const Home = () => {
       <Grid className={classes.imageForm}>
         <Grid className={classes.image}></Grid>
         <Grid className={classes.signUpPage}>
-          <SignUpPageRight />
+          <Login />
         </Grid>
       </Grid>
     </Grid>

@@ -24,7 +24,7 @@ import InstagramIcon from "@material-ui/icons/Instagram";
 import YouTubeIcon from "@material-ui/icons/YouTube";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import cleaningImage from "../images/broom-solid.svg";
-import { useHistory } from "react-router";
+// import { useHistory } from "react-router";
 var axios = require(`axios`);
 
 const theme = createMuiTheme({
@@ -163,12 +163,18 @@ const cards = [
 
 export default function AfterLogin() {
   const classes = useStyles();
-  const history = useHistory();
-  const { useremail, userfullname } = history.location.state;
+  // const history = useHistory();
+  // const { useremail, userfullname } = history.location.state;
   const [allServicesArray, setallServicesArray] = useState([]);
-
+  const [userObj, setuserObj] = useState()
   useEffect(() => {
     console.log("useffect");
+    var userObject={
+      _id:localStorage.getItem('userId'),
+      fullname:localStorage.getItem('userFullName'),
+      email:localStorage.getItem('userEmail')
+    }
+    setuserObj(userObject);
     axios.get("http://localhost:2000/api/services/getservices").then((res) => {
       setallServicesArray(res.data.servicesList);
       console.log('res.data :>> ', res.data.servicesList);
@@ -183,7 +189,7 @@ export default function AfterLogin() {
           {/* Hero unit */}
           <div className={classes.heroContent}>
             <Container maxWidth="me">
-              <Typography align="center">Welcome {userfullname}</Typography>
+              <Typography align="center">Welcome {userObj?userObj.fullname:""}</Typography>
               <Typography
                 component="h1"
                 variant="h2"
