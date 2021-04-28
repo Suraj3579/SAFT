@@ -80,11 +80,11 @@ function Cards(props) {
       .post(
         `http://localhost:2000/api/user/cart/add-to-cart`,
         {
-          cartItems: [{
-            serviceiteam: props.id,
+          cartItems: {
+            serviceitem: props.id,
             quantity: 1,
             price: props.price,
-          }],
+          },
         },
         { headers }
       )

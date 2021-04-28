@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import ButtonAppBar from "../ButtonAppBar";
 import Paper from "@material-ui/core/Paper";
@@ -10,7 +10,10 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Profile from "../profile";
 import CartItem from "./cartitem";
-
+const axios = require(`axios`);
+const headers = {
+  Authorization: "Bearer " + localStorage.getItem("jwtToken"),
+};
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -77,18 +80,32 @@ const cartitems = [
     id: 1,
     category: "Category1",
     name: "cartitem1",
-    cost: "100",
+    price: "100",
   },
   {
     id: 2,
     category: "Category2",
     name: "cartitem2",
-    cost: "200",
+    price: "200",
   },
 ];
 
 function Cart() {
   const classes = useStyles();
+  const [cartItemsArray, setCartItemsArray] = useState([]);
+
+  useEffect(() => {
+    console.log("getCartItems");
+    axios
+      .post(`http://localhost:2000/api/user/getCartItems`, {}, { headers })
+      .then((res) => {
+        console.log("getCartItems.res.data :>> ", res.data);
+        setCartItemsArray(res.data.cartItemsArray);
+      })
+      .catch((error) => {
+        console.log(error.response.data.message);
+      });
+  }, []);
   return (
     <React.Fragment>
       <ThemeProvider theme={theme}>
@@ -120,8 +137,8 @@ function Cart() {
               </Typography>
             </Paper>
             <Grid container spacing={0}>
-              {cartitems.map((cartitem) => (
-                <Grid item key={cartitem.id} xs={12} sm={12}>
+              {cartItemsArray.map((cartitem) => (
+                <Grid item key={cartitem._id} xs={12} sm={12}>
                   <Paper style={{ padding: theme.spacing(2) }}>
                     <CartItem service={cartitem} />
                   </Paper>
@@ -256,6 +273,7 @@ function Cart() {
               variant="contained"
               color="primary"
               className={classes.submit}
+              href="/checkout"
             >
               PROCEED TO CHECKOUT
             </Button>

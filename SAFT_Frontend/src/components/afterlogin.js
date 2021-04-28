@@ -189,7 +189,7 @@ export default function AfterLogin() {
           {/* Hero unit */}
           <div className={classes.heroContent}>
             <Container maxWidth="me">
-              <Typography align="center">Welcome {userObj?userObj.fullname:""}</Typography>
+              <Typography align="center" style={{fontWeight:"bold", marginBottom:'10px', fontSize:'25px'}}>Welcome {userObj?userObj.fullname:""}</Typography>
               <Typography
                 component="h1"
                 variant="h2"

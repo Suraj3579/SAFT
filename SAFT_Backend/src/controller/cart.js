@@ -72,6 +72,7 @@ exports.getCartItems = (req, res) => {
       console.log(cart);
       if (cart) {
         let cartItems = {};
+        let cartItemsArray=[]; //sending elements as array
         for(const item of cart.cartItems)
         {
           //console.log(item);
@@ -83,9 +84,15 @@ exports.getCartItems = (req, res) => {
             price: item.serviceitem.price,
             // qty: item.quantity,
           };
+            cartItemsArray.push({
+              _id: item.serviceitem._id.toString(),
+              name: item.serviceitem.name,
+              img: item.serviceitem.serviceItemsPictures[0].img,
+              price: item.serviceitem.price,
+          });
         //});
         }
-        res.status(200).json({ cartItems });
+        res.status(200).json({ cartItems,cartItemsArray });
       }
     });
   //}
@@ -93,14 +100,14 @@ exports.getCartItems = (req, res) => {
 
 // new update remove cart items
 exports.removeCartItems = (req, res) => {
-  const { serviceitemId } = req.body.payload;
-  if (serviceitemId) {
+  const { serviceitem } = req.body;
+  if (serviceitem) {
     Cart.update(
       { user: req.user._id },
       {
         $pull: {
           cartItems: {
-            serviceitem: serviceitemId,
+            serviceitem: serviceitem,
           },
         },
       }

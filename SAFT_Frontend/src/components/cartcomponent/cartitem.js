@@ -2,6 +2,10 @@ import { Avatar, Paper, Typography } from "@material-ui/core";
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+const axios=require(`axios`)
+const headers = {
+  Authorization: "Bearer " + localStorage.getItem("jwtToken"),
+};
 
 const user = {
   firstName: "Phanindra Reddy",
@@ -41,6 +45,24 @@ const useStyles = makeStyles((theme) => ({
 
 function CartItem(props) {
   const classes = useStyles();
+
+  const removeItem = () => {
+    axios
+      .post(
+        `http://localhost:2000/api/user/cart/removeItem`,
+        {
+            serviceitem: props.id,
+        },
+        { headers }
+      )
+      .then((res) => {
+        alert("service item remove from card");
+        console.log("res-card--> ", res);
+      })
+      .catch((error) => {
+        console.log("error-card--> ", error);
+      });
+  };
   return (
     <React.Fragment>
       <div className={classes.root}>
@@ -52,7 +74,7 @@ function CartItem(props) {
           }}
         >
           <img
-            src="https://images.unsplash.com/photo-1573399054516-90665ecc44be?ixid=MXwxMjA3fDB8MHxzZWFyY2h8N3x8dGVsZXZpc2lvbnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80"
+            src={`http://localhost:2000/public/${props.service.img}`}
             alt=""
             style={{ width: "120px", height: "120px" }}
           />
@@ -64,7 +86,7 @@ function CartItem(props) {
               fontWeight: "bold",
             }}
           >
-            {props.service.category} / {props.service.name}
+            {props.service.name}
           </Typography>
           <Typography
             variant="h5"
@@ -76,7 +98,7 @@ function CartItem(props) {
               fontWeight: "bold",
             }}
           >
-            ₹{props.service.cost}
+            ₹{props.service.price}
           </Typography>
           <Button
             variant="contained"
@@ -87,7 +109,7 @@ function CartItem(props) {
               marginLeft: "auto",
               color: "white",
             }}
-            href="/checkout"
+            // onClick={removeItem}
           >
             <span>REMOVE</span>
           </Button>
