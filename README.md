@@ -1,2 +1,2 @@
-# SAFT
-website built  with MERN stack
+# SAFT (Services At Finger Tips)
+Website built  with MERN stack
